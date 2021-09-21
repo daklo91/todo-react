@@ -1,10 +1,23 @@
 .background {
-  width: 100vw;
-  height: 100vh;
-  background-color: #171823;
+  background-image: url("./assets/images/bg-mobile-dark.jpg");
+  position: absolute;
+  height: 100%;
+  background-position: center;
+  background-position: top;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  background-repeat: no-repeat;
 }
 
 .container {
   margin: auto;
   width: 327px;
+}
+
+@media only screen and (min-width: 750px) {
+  .background {
+    /* !both desktop images needs adjusting they are too small*/
+    background-image: url("./assets/images/bg-desktop-dark.jpg");
+  }
 }
