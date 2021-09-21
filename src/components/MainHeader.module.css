@@ -1,8 +1,17 @@
 header {
   display: flex;
-  /* width: 325;
-  margin: auto; the header is 325px while the todo list is 327px, so test this later*/
+  justify-content: space-between;
+  height: 20px;
+  width: 325;
+  margin: auto;
+  margin-top: 48px;
 }
 
-.logo {
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(90%);
 }

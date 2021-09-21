@@ -1,9 +1,9 @@
-import classes from "./MainHeader.module.css";
+import "./MainHeader.module.css";
 
 function MainHeader() {
   return (
     <header>
-      <div className={classes.logo}>
+      <div>
         <svg
           width="109"
           height="20"
