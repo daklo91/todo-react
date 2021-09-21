@@ -1,4 +1,5 @@
-import MainHeader from "./components/MainHeader";
+import MainHeader from "./components/layout/MainHeader";
+import TodoList from "./components/todoComponents/TodoList";
 import "./App.css";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <div className="background"></div>
       <div className="container">
         <MainHeader />
+        <TodoList />
       </div>
     </div>
   );
