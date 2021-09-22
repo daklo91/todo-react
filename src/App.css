@@ -1,5 +1,5 @@
 .background {
-  background-image: url("./assets/images/bg-mobile-dark.jpg");
+  background-image: var(--bg-image-mobile);
   position: absolute;
   height: 200px;
   background-position: center;
@@ -18,7 +18,7 @@
 
 @media only screen and (min-width: 600px) {
   .background {
-    background-image: url("./assets/images/bg-desktop-dark.jpg");
+    background-image: var(--bg-image);
     height: 300px;
   }
 }
