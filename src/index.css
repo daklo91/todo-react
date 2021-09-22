@@ -1,19 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 
+:root {
+  --bg-color: #fafafa;
+  --ui-bg-color: #ffffff;
+  --bg-image: url("./assets/images/bg-desktop-light.jpg");
+  --bg-image-mobile: url("./assets/images/bg-mobile-light.jpg");
+  --text-color: #494c6b;
+  --text-color-crossed: #4d5067;
+  --text-color-crossed: #d1d2da;
+  --input-text: #393a4b;
+  --small-text-color: #9495a5;
+  --border-color: #e3e4f1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #171823;
+    --ui-bg-color: #25273d;
+    --bg-image: url("./assets/images/bg-desktop-dark.jpg");
+    --bg-image-mobile: url("./assets/images/bg-mobile-dark.jpg");
+    --text-color: #c8cbe7;
+    --text-color-crossed: #4d5067;
+    --input-text: #c8cbe7;
+    --small-text-color: #5b5e7e;
+    --border-color: #393a4b;
+  }
+}
+
 html {
-  background-color: #171823;
+  background-color: var(--bg-color);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Josefin Sans", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(90%);
 }
