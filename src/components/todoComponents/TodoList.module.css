@@ -1,5 +1,10 @@
 ul {
-  background-color: #25273d;
   padding: 0;
+  margin-bottom: 0;
+}
+
+.container {
+  background-color: var(--ui-bg-color);
   border-radius: 5px;
+  color: var(--small-text-color);
 }

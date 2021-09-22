@@ -6,12 +6,3 @@ header {
   margin: auto;
   margin-top: 48px;
 }
-
-button {
-  all: unset;
-  cursor: pointer;
-}
-
-button:hover {
-  filter: brightness(90%);
-}
