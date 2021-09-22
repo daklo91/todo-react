@@ -1,13 +1,20 @@
 import TodoItem from "./TodoItem";
-import "./TodoList.module.css";
+import ClearTodo from "./ClearTodo";
+import classes from "./TodoList.module.css";
 
 function TodoList() {
   return (
-    <ul>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-    </ul>
+    <div className={classes.container}>
+      <ul>
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+      </ul>
+      <ClearTodo />
+    </div>
   );
 }
 
