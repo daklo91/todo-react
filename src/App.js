@@ -1,6 +1,7 @@
 import MainHeader from "./components/layout/MainHeader";
 import TodoList from "./components/todoComponents/TodoList";
 import classes from "./App.module.css";
+import CreateTodo from "./components/todoComponents/CreateTodo";
 
 window
   .matchMedia("(prefers-color-scheme: dark)")
@@ -14,6 +15,7 @@ function App() {
       <div className={classes.background}></div>
       <div className={classes.container}>
         <MainHeader />
+        <CreateTodo />
         <TodoList />
       </div>
       <div className={classes.instructionText}>
