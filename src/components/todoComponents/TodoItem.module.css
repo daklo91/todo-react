@@ -29,3 +29,10 @@ li {
   display: flex;
   align-items: center;
 }
+
+@media screen and (min-width: 700px) {
+  .checkmark {
+    height: 22px;
+    width: 22px;
+  }
+}
