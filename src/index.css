@@ -11,6 +11,7 @@
   --input-text: #393a4b;
   --small-text-color: #9495a5;
   --border-color: #e3e4f1;
+  --placeholder-text: #767992;
 }
 
 @media (prefers-color-scheme: dark) {
