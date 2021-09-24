@@ -16,6 +16,14 @@
   width: 327px;
 }
 
+.instructionText {
+  color: var(--small-text-color);
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  letter-spacing: -0.19px;
+}
+
 @media only screen and (min-width: 700px) {
   .background {
     background-image: var(--bg-image);
@@ -24,5 +32,9 @@
 
   .container {
     width: 540px;
+  }
+
+  .instructionText {
+    margin-top: 49px;
   }
 }

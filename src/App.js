@@ -1,6 +1,6 @@
 import MainHeader from "./components/layout/MainHeader";
 import TodoList from "./components/todoComponents/TodoList";
-import "./App.css";
+import classes from "./App.module.css";
 
 window
   .matchMedia("(prefers-color-scheme: dark)")
@@ -11,10 +11,13 @@ window
 function App() {
   return (
     <div>
-      <div className="background"></div>
-      <div className="container">
+      <div className={classes.background}></div>
+      <div className={classes.container}>
         <MainHeader />
         <TodoList />
+      </div>
+      <div className={classes.instructionText}>
+        Drag and drop to reorder list
       </div>
     </div>
   );
