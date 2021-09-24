@@ -6,3 +6,15 @@ header {
   margin: auto;
   margin-top: 48px;
 }
+
+@media only screen and (min-width: 700px) {
+  .logoContainer {
+    padding-left: 20px;
+  }
+  .logo {
+    transform: scale(1.4);
+  }
+  .sunSVG {
+    transform: scale(1.3);
+  }
+}

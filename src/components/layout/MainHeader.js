@@ -1,10 +1,11 @@
-import "./MainHeader.module.css";
+import classes from "./MainHeader.module.css";
 
 function MainHeader() {
   return (
     <header>
-      <div>
+      <div className={classes.logoContainer}>
         <svg
+          className={classes.logo}
           width="109"
           height="20"
           viewBox="0 0 109 20"
@@ -21,6 +22,7 @@ function MainHeader() {
       </div>
       <button>
         <svg
+          className={classes.sunSVG}
           width="20"
           height="20"
           viewBox="0 0 20 20"
