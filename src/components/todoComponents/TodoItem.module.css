@@ -72,4 +72,13 @@ li:hover .svgButton {
   .crossSVG {
     transform: scale(1.527);
   }
+
+  li {
+    padding: 16px 24px;
+  }
+
+  .text {
+    font-size: 18px;
+    margin-left: 24px;
+  }
 }
