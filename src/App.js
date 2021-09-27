@@ -2,6 +2,7 @@ import MainHeader from "./components/layout/MainHeader";
 import TodoList from "./components/todoComponents/TodoList";
 import classes from "./App.module.css";
 import CreateTodo from "./components/todoComponents/CreateTodo";
+import TodoFilter from "./components/todoComponents/TodoFilter";
 
 window
   .matchMedia("(prefers-color-scheme: dark)")
@@ -17,6 +18,7 @@ function App() {
         <MainHeader />
         <CreateTodo />
         <TodoList />
+        <TodoFilter />
       </div>
       <div className={classes.instructionText}>
         Drag and drop to reorder list
