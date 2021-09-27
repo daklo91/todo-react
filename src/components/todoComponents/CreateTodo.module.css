@@ -25,6 +25,7 @@
 @media only screen and (min-width: 700px) {
   .container {
     margin-top: 60px;
+    padding: 0px 24px;
   }
 
   .input {
