@@ -41,7 +41,3 @@ button {
   all: unset;
   cursor: pointer;
 }
-
-button:hover {
-  filter: brightness(90%);
-}
