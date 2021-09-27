@@ -12,6 +12,7 @@
   --small-text-color: #9495a5;
   --border-color: #e3e4f1;
   --placeholder-text: #767992;
+  --control-button-hover: #494c6b;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +26,7 @@
     --input-text: #c8cbe7;
     --small-text-color: #5b5e7e;
     --border-color: #393a4b;
+    --control-button-hover: #e3e4f1;
   }
 }
 
