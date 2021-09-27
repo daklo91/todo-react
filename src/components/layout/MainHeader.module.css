@@ -17,4 +17,7 @@ header {
   .sunSVG {
     transform: scale(1.3);
   }
+  .sunSVG:hover {
+    filter: brightness(90%);
+  }
 }
