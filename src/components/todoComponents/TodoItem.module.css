@@ -11,11 +11,30 @@ li {
   align-items: center;
 }
 
+.checkmarkBorder {
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--border-color);
+}
+
+.checkmarkButton:hover .checkmarkBorder {
+  background-color: none;
+  background-image: linear-gradient(
+    120deg,
+    rgba(85, 221, 255, 1) 0%,
+    rgba(192, 88, 243, 1) 100%
+  );
+}
+
 .checkmark {
-  border-radius: 50%;
+  border-radius: 100%;
   height: 18px;
   width: 18px;
-  border: var(--border-color) solid 1px;
+  background-color: var(--ui-bg-color);
 }
 
 .text {
@@ -28,11 +47,29 @@ li {
 .svgButton {
   display: flex;
   align-items: center;
+  visibility: hidden;
+}
+
+li:hover .svgButton {
+  visibility: visible;
+}
+
+.crossSVG:hover {
+  filter: brightness(90%);
 }
 
 @media screen and (min-width: 700px) {
   .checkmark {
     height: 22px;
     width: 22px;
+  }
+
+  .checkmarkBorder {
+    height: 24px;
+    width: 24px;
+  }
+
+  .crossSVG {
+    transform: scale(1.527);
   }
 }

@@ -4,13 +4,16 @@ function TodoItem() {
   return (
     <li>
       <div className={classes.groupCheckmarkText}>
-        <button>
-          <div className={classes.checkmark}></div>
+        <button className={classes.checkmarkButton}>
+          <div className={classes.checkmarkBorder}>
+            <div className={classes.checkmark}></div>
+          </div>
         </button>
         <div className={classes.text}>Lorem ipsum dolor</div>
       </div>
       <button className={classes.svgButton}>
         <svg
+          className={classes.crossSVG}
           width="12"
           height="12"
           viewBox="0 0 12 12"
