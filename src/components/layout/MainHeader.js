@@ -1,6 +1,16 @@
 import classes from "./MainHeader.module.css";
 
-function MainHeader() {
+function MainHeader(props) {
+  function toggleChangeTheme() {
+    let theme = props.theme;
+    if (theme === "dark") {
+      theme = "light";
+    } else if (theme === "light") {
+      theme = "dark";
+    }
+    props.changeTheme(theme);
+  }
+
   return (
     <header>
       <div className={classes.logoContainer}>
@@ -20,7 +30,7 @@ function MainHeader() {
           />
         </svg>
       </div>
-      <button>
+      <button onClick={toggleChangeTheme}>
         <svg
           className={classes.sunSVG}
           width="20"
