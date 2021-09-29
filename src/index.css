@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 
-:root {
+html[data-theme="light"] {
   --bg-color: #fafafa;
   --ui-bg-color: #ffffff;
   --bg-image: url("./assets/images/bg-desktop-light.jpg");
@@ -15,19 +15,17 @@
   --control-button-hover: #494c6b;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #171823;
-    --ui-bg-color: #25273d;
-    --bg-image: url("./assets/images/bg-desktop-dark.jpg");
-    --bg-image-mobile: url("./assets/images/bg-mobile-dark.jpg");
-    --text-color: #c8cbe7;
-    --text-color-crossed: #4d5067;
-    --input-text: #c8cbe7;
-    --small-text-color: #5b5e7e;
-    --border-color: #393a4b;
-    --control-button-hover: #e3e4f1;
-  }
+html[data-theme="dark"] {
+  --bg-color: #171823;
+  --ui-bg-color: #25273d;
+  --bg-image: url("./assets/images/bg-desktop-dark.jpg");
+  --bg-image-mobile: url("./assets/images/bg-mobile-dark.jpg");
+  --text-color: #c8cbe7;
+  --text-color-crossed: #4d5067;
+  --input-text: #c8cbe7;
+  --small-text-color: #5b5e7e;
+  --border-color: #393a4b;
+  --control-button-hover: #e3e4f1;
 }
 
 html {
