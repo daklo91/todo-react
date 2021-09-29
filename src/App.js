@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import MainHeader from "./components/layout/MainHeader";
 import TodoList from "./components/todoComponents/TodoList";
@@ -7,12 +7,17 @@ import CreateTodo from "./components/todoComponents/CreateTodo";
 import TodoFilter from "./components/todoComponents/TodoFilter";
 
 function App() {
-  const [prefferedTheme, setPrefferedTheme] = useState("light");
+  const [prefferedTheme, setPrefferedTheme] = useState("dark");
 
-  function changeThemeHandler(theme) {
-    setPrefferedTheme(theme);
+  const changeThemeHandler = (theme) => {
+    setPrefferedTheme(() => {
+      return theme;
+    });
+  };
+
+  useEffect(() => {
     document.documentElement.setAttribute("data-theme", prefferedTheme);
-  }
+  }, [prefferedTheme]);
 
   return (
     <div>
