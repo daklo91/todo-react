@@ -13,6 +13,7 @@ html[data-theme="light"] {
   --border-color: #e3e4f1;
   --placeholder-text: #767992;
   --control-button-hover: #494c6b;
+  --shadow-color: rgba(194, 195, 214, 0.5);
 }
 
 html[data-theme="dark"] {
@@ -26,6 +27,7 @@ html[data-theme="dark"] {
   --small-text-color: #5b5e7e;
   --border-color: #393a4b;
   --control-button-hover: #e3e4f1;
+  --shadow-color: rgba(0, 0, 0, 0.5);
 }
 
 html {
