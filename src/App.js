@@ -8,6 +8,7 @@ import TodoFilter from "./components/todoComponents/TodoFilter";
 
 function App() {
   const [prefferedTheme, setPrefferedTheme] = useState("dark");
+  const [todoListData, setTodoListData] = useState([]);
 
   const changeThemeHandler = (theme) => {
     setPrefferedTheme(() => {
@@ -19,13 +20,19 @@ function App() {
     document.documentElement.setAttribute("data-theme", prefferedTheme);
   }, [prefferedTheme]);
 
+  const getInputTextHandler = (e) => {
+    setTodoListData(() => {
+      return todoListData.concat(e);
+    });
+  };
+
   return (
     <div>
       <div className={classes.background}></div>
       <div className={classes.container}>
         <MainHeader changeTheme={changeThemeHandler} theme={prefferedTheme} />
-        <CreateTodo />
-        <TodoList />
+        <CreateTodo getInputText={getInputTextHandler} />
+        <TodoList todoListData={todoListData} />
         <TodoFilter />
       </div>
       <div className={classes.instructionText}>
