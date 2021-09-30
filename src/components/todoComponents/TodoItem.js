@@ -1,15 +1,42 @@
 import classes from "./TodoItem.module.css";
 
 function TodoItem(props) {
+  function completeToggle() {
+    props.completeToggle(props.id);
+  }
+
   return (
     <li>
       <div className={classes.groupCheckmarkText}>
-        <button className={classes.checkmarkButton}>
-          <div className={classes.checkmarkBorder}>
-            <div className={classes.checkmark}></div>
+        <button className={classes.checkmarkButton} onClick={completeToggle}>
+          <div
+            className={`
+              ${classes.checkmarkBorder} ${
+              props.complete === true ? classes.checkMarkActive : null
+            }
+            `}
+          >
+            {props.complete === true ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+                <path
+                  fill="none"
+                  stroke="#FFF"
+                  strokeWidth="2"
+                  d="M1 4.304L3.696 7l6-6"
+                />
+              </svg>
+            ) : (
+              <div className={classes.checkmark}></div>
+            )}
           </div>
         </button>
-        <div className={classes.text}>{props.text}</div>
+        <div
+          className={`${classes.text} ${
+            props.complete === true ? classes.textComplete : null
+          }`}
+        >
+          {props.text}
+        </div>
       </div>
       <button className={classes.svgButton}>
         <svg
