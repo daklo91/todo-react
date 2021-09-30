@@ -20,11 +20,25 @@ function App() {
     document.documentElement.setAttribute("data-theme", prefferedTheme);
   }, [prefferedTheme]);
 
+  function handleCompleteToggle(id) {
+    setTodoListData(
+      [...todoListData].map((object) => {
+        if (object.id === id) {
+          return {
+            ...object,
+            complete: !object.complete,
+          };
+        } else return object;
+      })
+    );
+  }
+
   const getInputTextHandler = (e) => {
     const id = Math.random().toString(16).slice(2);
     const obj = {
       text: e,
       id: id,
+      complete: false,
     };
     setTodoListData(() => {
       return todoListData.concat(obj);
@@ -37,7 +51,10 @@ function App() {
       <div className={classes.container}>
         <MainHeader changeTheme={changeThemeHandler} theme={prefferedTheme} />
         <CreateTodo getInputText={getInputTextHandler} />
-        <TodoList todoListData={todoListData} />
+        <TodoList
+          todoListData={todoListData}
+          handleCompleteToggle={handleCompleteToggle}
+        />
         <TodoFilter />
       </div>
       <div className={classes.instructionText}>
