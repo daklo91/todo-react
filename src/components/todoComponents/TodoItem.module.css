@@ -30,6 +30,15 @@ li {
   );
 }
 
+.checkMarkActive {
+  background-color: none;
+  background-image: linear-gradient(
+    120deg,
+    rgba(85, 221, 255, 1) 0%,
+    rgba(192, 88, 243, 1) 100%
+  );
+}
+
 .checkmark {
   border-radius: 100%;
   height: 18px;
@@ -42,6 +51,11 @@ li {
   font-family: "Josefin Sans", sans-serif;
   font-size: 12px;
   margin-left: 12px;
+}
+
+.textComplete {
+  color: var(--text-color-crossed);
+  text-decoration: line-through;
 }
 
 .svgButton {
