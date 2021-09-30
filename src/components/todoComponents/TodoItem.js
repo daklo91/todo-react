@@ -1,6 +1,6 @@
 import classes from "./TodoItem.module.css";
 
-function TodoItem() {
+function TodoItem(props) {
   return (
     <li>
       <div className={classes.groupCheckmarkText}>
@@ -9,7 +9,7 @@ function TodoItem() {
             <div className={classes.checkmark}></div>
           </div>
         </button>
-        <div className={classes.text}>Lorem ipsum dolor</div>
+        <div className={classes.text}>{props.text}</div>
       </div>
       <button className={classes.svgButton}>
         <svg

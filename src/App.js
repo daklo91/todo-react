@@ -21,8 +21,13 @@ function App() {
   }, [prefferedTheme]);
 
   const getInputTextHandler = (e) => {
+    const id = Math.random().toString(16).slice(2);
+    const obj = {
+      text: e,
+      id: id,
+    };
     setTodoListData(() => {
-      return todoListData.concat(e);
+      return todoListData.concat(obj);
     });
   };
 
