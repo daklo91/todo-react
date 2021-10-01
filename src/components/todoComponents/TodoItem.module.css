@@ -84,7 +84,8 @@ li:hover .svgButton {
   }
 
   .crossSVG {
-    transform: scale(1.527);
+    height: 18px;
+    width: 18px;
   }
 
   li {
@@ -94,5 +95,12 @@ li:hover .svgButton {
   .text {
     font-size: 18px;
     margin-left: 24px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .checkSVG {
+    height: 8px;
+    width: 10px;
   }
 }

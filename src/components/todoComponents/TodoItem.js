@@ -21,7 +21,13 @@ function TodoItem(props) {
             `}
           >
             {props.complete === true ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="9">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="11"
+                height="9"
+                viewBox="0 0 11 9"
+                className={classes.checkSVG}
+              >
                 <path
                   fill="none"
                   stroke="#FFF"
