@@ -22,7 +22,7 @@ function App() {
 
   function handleCompleteToggle(id) {
     setTodoListData(
-      [...todoListData].map((object) => {
+      todoListData.map((object) => {
         if (object.id === id) {
           return {
             ...object,
@@ -31,6 +31,10 @@ function App() {
         } else return object;
       })
     );
+  }
+
+  function handleDeleteTodoItem(id) {
+    setTodoListData(todoListData.filter((object) => object.id !== id));
   }
 
   const getInputTextHandler = (e) => {
@@ -54,6 +58,7 @@ function App() {
         <TodoList
           todoListData={todoListData}
           handleCompleteToggle={handleCompleteToggle}
+          handleDeleteTodoItem={handleDeleteTodoItem}
         />
         <TodoFilter />
       </div>

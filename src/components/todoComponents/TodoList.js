@@ -7,6 +7,10 @@ function TodoList(props) {
     props.handleCompleteToggle(id);
   }
 
+  function handleDeleteTodoItem(id) {
+    props.handleDeleteTodoItem(id);
+  }
+
   return (
     <div className={classes.container}>
       <ul>
@@ -17,6 +21,7 @@ function TodoList(props) {
             completeToggle={handleCompleteToggle}
             id={todo.id}
             complete={todo.complete}
+            handleDeleteTodoItem={handleDeleteTodoItem}
           />
         ))}
       </ul>

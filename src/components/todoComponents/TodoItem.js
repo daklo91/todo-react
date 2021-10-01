@@ -5,6 +5,10 @@ function TodoItem(props) {
     props.completeToggle(props.id);
   }
 
+  function deleteTodoItem() {
+    props.handleDeleteTodoItem(props.id);
+  }
+
   return (
     <li>
       <div className={classes.groupCheckmarkText}>
@@ -38,7 +42,7 @@ function TodoItem(props) {
           {props.text}
         </div>
       </div>
-      <button className={classes.svgButton}>
+      <button className={classes.svgButton} onClick={deleteTodoItem}>
         <svg
           className={classes.crossSVG}
           width="12"
