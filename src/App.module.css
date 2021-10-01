@@ -24,7 +24,15 @@
   letter-spacing: -0.19px;
 }
 
+.hideFilter {
+  display: block;
+}
+
 @media only screen and (min-width: 700px) {
+  .hideFilter {
+    display: none;
+  }
+
   .background {
     background-image: var(--bg-image);
     height: 300px;

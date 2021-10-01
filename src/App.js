@@ -16,6 +16,10 @@ function App() {
     });
   };
 
+  //* App.js må sende ned en kopi av staten todoListData. Denne kopien går igjennom
+  //* en filter her i App.js som da får en string som sier hva som skal filtreres av
+  //* TodoFilter.js.
+
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", prefferedTheme);
   }, [prefferedTheme]);
@@ -60,7 +64,9 @@ function App() {
           handleCompleteToggle={handleCompleteToggle}
           handleDeleteTodoItem={handleDeleteTodoItem}
         />
-        <TodoFilter />
+        <div className={classes.hideFilter}>
+          <TodoFilter />
+        </div>
       </div>
       <div className={classes.instructionText}>
         Drag and drop to reorder list

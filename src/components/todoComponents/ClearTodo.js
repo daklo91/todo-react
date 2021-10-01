@@ -1,13 +1,12 @@
 import classes from "./ClearTodo.module.css";
+import TodoFilter from "./TodoFilter";
 
 function ClearTodo() {
   return (
     <div className={classes.container}>
-      <span>0 items left</span>
-      <div className={classes.controlDiv}>
-        <button className={classes.controlButton}>All</button>
-        <button className={classes.controlButton}>Active</button>
-        <button className={classes.controlButton}>Completed</button>
+      <span className={classes.itemCounter}>0 items left</span>
+      <div className={classes.hideFilter}>
+        <TodoFilter />
       </div>
       <button className={classes.clearButton}>Clear Completed</button>
     </div>
