@@ -9,6 +9,7 @@ import TodoFilter from "./components/todoComponents/TodoFilter";
 function App() {
   const [prefferedTheme, setPrefferedTheme] = useState("dark");
   const [todoListData, setTodoListData] = useState([]);
+  const [filterState, setFilterState] = useState(false);
 
   const changeThemeHandler = (theme) => {
     setPrefferedTheme(() => {
@@ -16,13 +17,13 @@ function App() {
     });
   };
 
-  //* App.js må sende ned en kopi av staten todoListData. Denne kopien går igjennom
-  //* en filter her i App.js som da får en string som sier hva som skal filtreres av
-  //* TodoFilter.js.
+  function changeFilterState(boolean) {
+    setFilterState(boolean);
+  }
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", prefferedTheme);
-  }, [prefferedTheme]);
+  }, [prefferedTheme, filterState]);
 
   function handleCompleteToggle(id) {
     setTodoListData(
@@ -61,11 +62,14 @@ function App() {
         <CreateTodo getInputText={getInputTextHandler} />
         <TodoList
           todoListData={todoListData}
+          filterState={filterState}
           handleCompleteToggle={handleCompleteToggle}
           handleDeleteTodoItem={handleDeleteTodoItem}
+          handleSetFilterState={changeFilterState}
         />
         <div className={classes.hideFilter}>
-          <TodoFilter />
+          <p>{filterState}</p>
+          <TodoFilter handleSetFilterState={changeFilterState} />
         </div>
       </div>
       <div className={classes.instructionText}>
