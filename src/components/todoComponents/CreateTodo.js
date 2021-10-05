@@ -5,8 +5,10 @@ import classes from "./CreateTodo.module.css";
 function CreateTodo(props) {
   const inputRef = useRef();
 
-  function submitHandler(e) {
-    if (inputRef.current.value !== "") {
+  function submitHandler(e, clicked) {
+    if (inputRef.current.value !== "" && clicked === "clicked") {
+      props.getInputText(inputRef.current.value, clicked);
+    } else if (inputRef.current.value !== "" && clicked !== "clicked") {
       props.getInputText(inputRef.current.value);
     }
     e.preventDefault();
@@ -15,7 +17,10 @@ function CreateTodo(props) {
 
   return (
     <div className={classes.container}>
-      <button className={TodoItemClasses.checkmarkButton}>
+      <button
+        onClick={(e) => submitHandler(e, "clicked")}
+        className={TodoItemClasses.checkmarkButton}
+      >
         <div className={TodoItemClasses.checkmarkBorder}>
           <div className={TodoItemClasses.checkmark}></div>
         </div>

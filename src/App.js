@@ -69,12 +69,12 @@ function App() {
     setTodoListData(todoListData.filter((object) => object.complete === false));
   }
 
-  const getInputTextHandler = (e) => {
+  const getInputTextHandler = (e, clicked) => {
     const id = Math.random().toString(16).slice(2);
     const obj = {
       text: e,
       id: id,
-      complete: false,
+      complete: clicked ? true : false,
     };
     setTodoListData(() => {
       return todoListData.concat(obj);
