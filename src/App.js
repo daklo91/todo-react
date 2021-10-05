@@ -96,9 +96,13 @@ function App() {
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
           handleDndGetDraggedItemId={dndGetDraggedItemId}
           handleDndGetDropOverItemId={dndGetDropOverItemId}
+          filterStateBigMedia={filterState}
         />
         <div className={classes.hideFilter}>
-          <TodoFilter handleSetFilterState={changeFilterState} />
+          <TodoFilter
+            handleSetFilterState={changeFilterState}
+            filterState={filterState}
+          />
         </div>
       </div>
       <div className={classes.instructionText}>

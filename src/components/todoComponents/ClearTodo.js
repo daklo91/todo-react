@@ -9,7 +9,10 @@ function ClearTodo(props) {
         items left
       </span>
       <div className={classes.hideFilter}>
-        <TodoFilter handleSetFilterState={props.handleSetFilterState} />
+        <TodoFilter
+          handleSetFilterState={props.handleSetFilterState}
+          filterState={props.filterState}
+        />
       </div>
       <button
         className={classes.clearButton}

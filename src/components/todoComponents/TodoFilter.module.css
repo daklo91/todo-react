@@ -32,3 +32,11 @@
     margin-left: 18px;
   }
 }
+
+.active {
+  color: #3a7cfd;
+}
+
+.active:hover {
+  color: #3a7cfd;
+}
