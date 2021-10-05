@@ -55,9 +55,9 @@ function App() {
     const dragIndex = todoListData.findIndex((el) => el.id === dragItem);
     const dropIndex = todoListData.findIndex((el) => el.id === DropOverItem);
     const dragItemElement = todoListData.filter((el) => el.id === dragItem);
-    const dropItemElement = todoListData.filter((el) => el.id === DropOverItem);
-    array.splice(dropIndex, 1, ...dragItemElement);
-    array.splice(dragIndex, 1, ...dropItemElement);
+    // const dropItemElement = todoListData.filter((el) => el.id === DropOverItem);
+    array.splice(dragIndex, 1);
+    array.splice(dropIndex, 0, ...dragItemElement);
     setTodoListData(todoListData.splice(0, todoListData.length, array));
   }
 
