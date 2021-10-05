@@ -4,7 +4,10 @@ import TodoFilter from "./TodoFilter";
 function ClearTodo(props) {
   return (
     <div className={classes.container}>
-      <span className={classes.itemCounter}>0 items left</span>
+      <span className={classes.itemCounter}>
+        {props.todoListData.filter((todo) => todo.complete === false).length}{" "}
+        items left
+      </span>
       <div className={classes.hideFilter}>
         <TodoFilter handleSetFilterState={props.handleSetFilterState} />
       </div>

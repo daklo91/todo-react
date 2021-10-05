@@ -41,6 +41,7 @@ function TodoList(props) {
       <ClearTodo
         handleSetFilterState={props.handleSetFilterState}
         handleDeleteAllTodoItems={props.handleDeleteAllTodoItems}
+        todoListData={props.todoListData}
       />
     </div>
   );

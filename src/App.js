@@ -73,7 +73,6 @@ function App() {
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
         />
         <div className={classes.hideFilter}>
-          <p>{filterState}</p>
           <TodoFilter handleSetFilterState={changeFilterState} />
         </div>
       </div>
