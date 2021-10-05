@@ -7,7 +7,10 @@ function TodoFilter(props) {
 
   return (
     <div className={classes.container}>
-      <button className={classes.button} onClick={() => filterStateChange("")}>
+      <button
+        className={classes.button}
+        onClick={() => filterStateChange("all")}
+      >
         All
       </button>
       <button

@@ -14,18 +14,29 @@ function TodoList(props) {
   return (
     <div className={classes.container}>
       <ul>
-        {props.todoListData
-          .filter((todo) => todo.complete === props.filterState)
-          .map((todo) => (
-            <TodoItem
-              key={todo.id}
-              text={todo.text}
-              completeToggle={handleCompleteToggle}
-              id={todo.id}
-              complete={todo.complete}
-              handleDeleteTodoItem={handleDeleteTodoItem}
-            />
-          ))}
+        {props.filterState === "all"
+          ? props.todoListData.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                text={todo.text}
+                completeToggle={handleCompleteToggle}
+                id={todo.id}
+                complete={todo.complete}
+                handleDeleteTodoItem={handleDeleteTodoItem}
+              />
+            ))
+          : props.todoListData
+              .filter((todo) => todo.complete === props.filterState)
+              .map((todo) => (
+                <TodoItem
+                  key={todo.id}
+                  text={todo.text}
+                  completeToggle={handleCompleteToggle}
+                  id={todo.id}
+                  complete={todo.complete}
+                  handleDeleteTodoItem={handleDeleteTodoItem}
+                />
+              ))}
       </ul>
       <ClearTodo handleSetFilterState={props.handleSetFilterState} />
     </div>
