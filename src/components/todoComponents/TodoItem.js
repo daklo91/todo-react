@@ -10,7 +10,11 @@ function TodoItem(props) {
   }
 
   return (
-    <li>
+    <li
+      draggable="true"
+      onDragStart={() => props.handleDndGetDraggedItemId(props.id)}
+      onDrop={() => props.handleDndGetDropOverItemId(props.id)}
+    >
       <div className={classes.groupCheckmarkText}>
         <button className={classes.checkmarkButton} onClick={completeToggle}>
           <div

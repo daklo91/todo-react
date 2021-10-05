@@ -13,7 +13,7 @@ function TodoList(props) {
 
   return (
     <div className={classes.container}>
-      <ul>
+      <ul onDragOver={(e) => e.preventDefault()}>
         {props.filterState === "all"
           ? props.todoListData.map((todo) => (
               <TodoItem
@@ -23,6 +23,8 @@ function TodoList(props) {
                 id={todo.id}
                 complete={todo.complete}
                 handleDeleteTodoItem={handleDeleteTodoItem}
+                handleDndGetDraggedItemId={props.handleDndGetDraggedItemId}
+                handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
               />
             ))
           : props.todoListData
@@ -35,6 +37,8 @@ function TodoList(props) {
                   id={todo.id}
                   complete={todo.complete}
                   handleDeleteTodoItem={handleDeleteTodoItem}
+                  handleDndGetDraggedItemId={props.handleDndGetDraggedItemId}
+                  handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
                 />
               ))}
       </ul>

@@ -9,7 +9,7 @@ import TodoFilter from "./components/todoComponents/TodoFilter";
 function App() {
   const [prefferedTheme, setPrefferedTheme] = useState("dark");
   const [todoListData, setTodoListData] = useState([]);
-  const [filterState, setFilterState] = useState(false);
+  const [filterState, setFilterState] = useState("all");
 
   const changeThemeHandler = (theme) => {
     setPrefferedTheme(() => {
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", prefferedTheme);
-  }, [prefferedTheme, filterState]);
+  }, [prefferedTheme]);
 
   function handleCompleteToggle(id) {
     setTodoListData(
@@ -36,6 +36,29 @@ function App() {
         } else return object;
       })
     );
+  }
+
+  let dragItem = "";
+  let DropOverItem = "";
+
+  function dndGetDraggedItemId(id) {
+    dragItem = id;
+  }
+
+  function dndGetDropOverItemId(id) {
+    DropOverItem = id;
+    dndReorderList();
+  }
+
+  function dndReorderList() {
+    let array = todoListData;
+    const dragIndex = todoListData.findIndex((el) => el.id === dragItem);
+    const dropIndex = todoListData.findIndex((el) => el.id === DropOverItem);
+    const dragItemElement = todoListData.filter((el) => el.id === dragItem);
+    const dropItemElement = todoListData.filter((el) => el.id === DropOverItem);
+    array.splice(dropIndex, 1, ...dragItemElement);
+    array.splice(dragIndex, 1, ...dropItemElement);
+    setTodoListData(todoListData.splice(0, todoListData.length, array));
   }
 
   function handleDeleteTodoItem(id) {
@@ -71,6 +94,8 @@ function App() {
           handleDeleteTodoItem={handleDeleteTodoItem}
           handleSetFilterState={changeFilterState}
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
+          handleDndGetDraggedItemId={dndGetDraggedItemId}
+          handleDndGetDropOverItemId={dndGetDropOverItemId}
         />
         <div className={classes.hideFilter}>
           <TodoFilter handleSetFilterState={changeFilterState} />
