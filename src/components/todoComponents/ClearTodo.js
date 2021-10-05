@@ -8,7 +8,12 @@ function ClearTodo(props) {
       <div className={classes.hideFilter}>
         <TodoFilter handleSetFilterState={props.handleSetFilterState} />
       </div>
-      <button className={classes.clearButton}>Clear Completed</button>
+      <button
+        className={classes.clearButton}
+        onClick={props.handleDeleteAllTodoItems}
+      >
+        Clear Completed
+      </button>
     </div>
   );
 }

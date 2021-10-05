@@ -42,6 +42,10 @@ function App() {
     setTodoListData(todoListData.filter((object) => object.id !== id));
   }
 
+  function handleDeleteAllTodoItems() {
+    setTodoListData(todoListData.filter((object) => object.complete === false));
+  }
+
   const getInputTextHandler = (e) => {
     const id = Math.random().toString(16).slice(2);
     const obj = {
@@ -66,6 +70,7 @@ function App() {
           handleCompleteToggle={handleCompleteToggle}
           handleDeleteTodoItem={handleDeleteTodoItem}
           handleSetFilterState={changeFilterState}
+          handleDeleteAllTodoItems={handleDeleteAllTodoItems}
         />
         <div className={classes.hideFilter}>
           <p>{filterState}</p>
