@@ -47,7 +47,9 @@ function App() {
 
   function dndGetDropOverItemId(id) {
     DropOverItem = id;
-    dndReorderList();
+    if (todoListData.findIndex((el) => el.id === dragItem) !== -1) {
+      dndReorderList();
+    }
   }
 
   function dndReorderList() {
@@ -59,6 +61,7 @@ function App() {
     array.splice(dragIndex, 1);
     array.splice(dropIndex, 0, ...dragItemElement);
     setTodoListData(todoListData.splice(0, todoListData.length, array));
+    DropOverItem = "";
   }
 
   function handleDeleteTodoItem(id) {
