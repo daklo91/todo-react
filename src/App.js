@@ -8,7 +8,22 @@ import TodoFilter from "./components/todoComponents/TodoFilter";
 
 function App() {
   const [prefferedTheme, setPrefferedTheme] = useState("dark");
-  const [todoListData, setTodoListData] = useState([]);
+  const [todoListData, setTodoListData] = useState([
+    {
+      text: "Complete online JavaScript Course",
+      id: "8d9ecc1f499a8",
+      complete: true,
+    },
+    { text: "Jog around the park 3x", id: "a2ae0a77deb3f", complete: false },
+    { text: "10 minutes meditation", id: "051a832438116", complete: false },
+    { text: "Read for 1 hour", id: "6d5df995d2463", complete: false },
+    { text: "Pick up groceries", id: "4203385488edb", complete: false },
+    {
+      text: "Complete Todo App on Frontend Mentor",
+      id: "a3237b18fb5ac",
+      complete: false,
+    },
+  ]);
   const [filterState, setFilterState] = useState("all");
 
   const changeThemeHandler = (theme) => {
