@@ -1,6 +1,9 @@
+import { useState } from "react";
 import classes from "./TodoItem.module.css";
 
 function TodoItem(props) {
+  const [dragEntered, setDragEntered] = useState(false);
+  const [dragStarted, setDragStarted] = useState(false);
   function completeToggle() {
     props.completeToggle(props.id);
   }
@@ -9,13 +12,33 @@ function TodoItem(props) {
     props.handleDeleteTodoItem(props.id);
   }
 
+  function onDrop() {
+    props.handleDndGetDropOverItemId(props.id);
+    setDragEntered(false);
+  }
+
+  function dragStart() {
+    props.handleDndGetDraggedItemId(props.id);
+    setDragStarted(true);
+  }
+
   return (
     <li
       draggable="true"
-      onDragStart={() => props.handleDndGetDraggedItemId(props.id)}
-      onDrop={() => props.handleDndGetDropOverItemId(props.id)}
+      onDragEnter={() => setDragEntered(true)}
+      onDragLeave={() => setDragEntered(false)}
+      onDragStart={dragStart}
+      onDragEnd={() => setDragStarted(false)}
+      onDrop={onDrop}
+      className={`${dragEntered === true ? classes.moveItemOnEnter : null} ${
+        dragStarted === true ? classes.itemStart : null
+      }`}
     >
-      <div className={classes.groupCheckmarkText}>
+      <div
+        className={`${classes.groupCheckmarkText} ${
+          dragEntered === true ? classes.dragEnter : null
+        }`}
+      >
         <button className={classes.checkmarkButton} onClick={completeToggle}>
           <div
             className={`

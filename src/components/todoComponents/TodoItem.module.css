@@ -104,3 +104,15 @@ li:hover .svgButton {
     width: 10px;
   }
 }
+
+.moveItemOnEnter {
+  opacity: 50%;
+}
+
+.itemStart {
+  opacity: 30%;
+}
+
+.dragEnter {
+  pointer-events: none;
+}
