@@ -53,31 +53,28 @@ function App() {
     );
   }
 
-  let dragItem = "";
-  let DropOverItem = "";
+  const handleOnDragEnd = (result) => {
+    const { destination, source, draggableId } = result;
 
-  function dndGetDraggedItemId(id) {
-    dragItem = id;
-  }
-
-  function dndGetDropOverItemId(id) {
-    DropOverItem = id;
-    if (todoListData.findIndex((el) => el.id === dragItem) !== -1) {
-      dndReorderList();
+    if (!destination) {
+      return;
     }
-  }
 
-  function dndReorderList() {
-    let array = todoListData;
-    const dragIndex = todoListData.findIndex((el) => el.id === dragItem);
-    const dropIndex = todoListData.findIndex((el) => el.id === DropOverItem);
-    const dragItemElement = todoListData.filter((el) => el.id === dragItem);
-    // const dropItemElement = todoListData.filter((el) => el.id === DropOverItem);
-    array.splice(dragIndex, 1);
-    array.splice(dropIndex, 0, ...dragItemElement);
-    setTodoListData(todoListData.splice(0, todoListData.length, array));
-    DropOverItem = "";
-  }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const tempArray = todoListData;
+    const draggedItem = tempArray.find((item) => item.id === draggableId);
+
+    tempArray.splice(source.index, 1);
+    tempArray.splice(destination.index, 0, draggedItem);
+
+    setTodoListData(tempArray);
+  };
 
   function handleDeleteTodoItem(id) {
     setTodoListData(todoListData.filter((object) => object.id !== id));
@@ -106,14 +103,13 @@ function App() {
         <MainHeader changeTheme={changeThemeHandler} theme={prefferedTheme} />
         <CreateTodo getInputText={getInputTextHandler} />
         <TodoList
+          handleOnDragEnd={handleOnDragEnd}
           todoListData={todoListData}
           filterState={filterState}
           handleCompleteToggle={handleCompleteToggle}
           handleDeleteTodoItem={handleDeleteTodoItem}
           handleSetFilterState={changeFilterState}
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
-          handleDndGetDraggedItemId={dndGetDraggedItemId}
-          handleDndGetDropOverItemId={dndGetDropOverItemId}
           filterStateBigMedia={filterState}
         />
         <div className={classes.hideFilter}>

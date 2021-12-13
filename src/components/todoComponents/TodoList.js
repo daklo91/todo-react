@@ -1,6 +1,7 @@
 import TodoItem from "./TodoItem";
 import ClearTodo from "./ClearTodo";
 import classes from "./TodoList.module.css";
+import { Droppable, DragDropContext } from "react-beautiful-dnd";
 
 function TodoList(props) {
   function handleCompleteToggle(id) {
@@ -11,37 +12,58 @@ function TodoList(props) {
     props.handleDeleteTodoItem(id);
   }
 
+  const onDragEnd = (result) => {
+    props.handleOnDragEnd(result);
+  };
+
   return (
     <div className={classes.container}>
-      <ul onDragOver={(e) => e.preventDefault()}>
-        {props.filterState === "all"
-          ? props.todoListData.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                text={todo.text}
-                completeToggle={handleCompleteToggle}
-                id={todo.id}
-                complete={todo.complete}
-                handleDeleteTodoItem={handleDeleteTodoItem}
-                handleDndGetDraggedItemId={props.handleDndGetDraggedItemId}
-                handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
-              />
-            ))
-          : props.todoListData
-              .filter((todo) => todo.complete === props.filterState)
-              .map((todo) => (
-                <TodoItem
-                  key={todo.id}
-                  text={todo.text}
-                  completeToggle={handleCompleteToggle}
-                  id={todo.id}
-                  complete={todo.complete}
-                  handleDeleteTodoItem={handleDeleteTodoItem}
-                  handleDndGetDraggedItemId={props.handleDndGetDraggedItemId}
-                  handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
-                />
-              ))}
-      </ul>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="oneAndOnly">
+          {(provided) => (
+            <ul ref={provided.innerRef} {...provided.droppableProps}>
+              {props.filterState === "all"
+                ? props.todoListData.map((todo, index) => (
+                    <TodoItem
+                      index={index}
+                      key={todo.id}
+                      text={todo.text}
+                      completeToggle={handleCompleteToggle}
+                      id={todo.id}
+                      complete={todo.complete}
+                      handleDeleteTodoItem={handleDeleteTodoItem}
+                      handleDndGetDraggedItemId={
+                        props.handleDndGetDraggedItemId
+                      }
+                      handleDndGetDropOverItemId={
+                        props.handleDndGetDropOverItemId
+                      }
+                    />
+                  ))
+                : props.todoListData
+                    .filter((todo) => todo.complete === props.filterState)
+                    .map((todo, index) => (
+                      <TodoItem
+                        index={index}
+                        key={todo.id}
+                        text={todo.text}
+                        completeToggle={handleCompleteToggle}
+                        id={todo.id}
+                        complete={todo.complete}
+                        handleDeleteTodoItem={handleDeleteTodoItem}
+                        handleDndGetDraggedItemId={
+                          props.handleDndGetDraggedItemId
+                        }
+                        handleDndGetDropOverItemId={
+                          props.handleDndGetDropOverItemId
+                        }
+                      />
+                    ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
       <ClearTodo
         handleSetFilterState={props.handleSetFilterState}
         handleDeleteAllTodoItems={props.handleDeleteAllTodoItems}

@@ -1,9 +1,7 @@
-import { useState } from "react";
 import classes from "./TodoItem.module.css";
+import { Draggable } from "react-beautiful-dnd";
 
 function TodoItem(props) {
-  const [dragEntered, setDragEntered] = useState(false);
-  const [dragStarted, setDragStarted] = useState(false);
   function completeToggle() {
     props.completeToggle(props.id);
   }
@@ -12,87 +10,74 @@ function TodoItem(props) {
     props.handleDeleteTodoItem(props.id);
   }
 
-  function onDrop() {
-    props.handleDndGetDropOverItemId(props.id);
-    setDragEntered(false);
-  }
-
-  function dragStart() {
-    props.handleDndGetDraggedItemId(props.id);
-    setDragStarted(true);
-  }
-
   return (
-    <li
-      draggable="true"
-      onDragEnter={() => setDragEntered(true)}
-      onDragLeave={() => setDragEntered(false)}
-      onDragStart={dragStart}
-      onDragEnd={() => setDragStarted(false)}
-      onDrop={onDrop}
-      className={`${dragEntered === true ? classes.moveItemOnEnter : null} ${
-        dragStarted === true ? classes.itemStart : null
-      }`}
-    >
-      <div
-        className={`${classes.groupCheckmarkText} ${
-          dragEntered === true ? classes.dragEnter : null
-        }`}
-      >
-        <button className={classes.checkmarkButton} onClick={completeToggle}>
-          <div
-            className={`
-              ${classes.checkmarkBorder} ${
-              props.complete === true ? classes.checkMarkActive : null
-            }
-            `}
-          >
-            {props.complete === true ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="11"
-                height="9"
-                viewBox="0 0 11 9"
-                className={classes.checkSVG}
+    <Draggable draggableId={props.id} index={props.index}>
+      {(provided) => (
+        <li
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          <div className={classes.groupCheckmarkText}>
+            <button
+              className={classes.checkmarkButton}
+              onClick={completeToggle}
+            >
+              <div
+                className={`
+                ${classes.checkmarkBorder} ${
+                  props.complete === true ? classes.checkMarkActive : null
+                }
+              `}
               >
-                <path
-                  fill="none"
-                  stroke="#FFF"
-                  strokeWidth="2"
-                  d="M1 4.304L3.696 7l6-6"
-                />
-              </svg>
-            ) : (
-              <div className={classes.checkmark}></div>
-            )}
+                {props.complete === true ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="11"
+                    height="9"
+                    viewBox="0 0 11 9"
+                    className={classes.checkSVG}
+                  >
+                    <path
+                      fill="none"
+                      stroke="#FFF"
+                      strokeWidth="2"
+                      d="M1 4.304L3.696 7l6-6"
+                    />
+                  </svg>
+                ) : (
+                  <div className={classes.checkmark}></div>
+                )}
+              </div>
+            </button>
+            <div
+              className={`${classes.text} ${
+                props.complete === true ? classes.textComplete : null
+              }`}
+            >
+              {props.text}
+            </div>
           </div>
-        </button>
-        <div
-          className={`${classes.text} ${
-            props.complete === true ? classes.textComplete : null
-          }`}
-        >
-          {props.text}
-        </div>
-      </div>
-      <button className={classes.svgButton} onClick={deleteTodoItem}>
-        <svg
-          className={classes.crossSVG}
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M11.7851 0.471404L11.3137 0L5.89256 5.42115L0.471404 0L0 0.471404L5.42115 5.89256L0 11.3137L0.471404 11.7851L5.89256 6.36396L11.3137 11.7851L11.7851 11.3137L6.36396 5.89256L11.7851 0.471404Z"
-            fill="#494C6B"
-          />
-        </svg>
-      </button>
-    </li>
+          <button className={classes.svgButton} onClick={deleteTodoItem}>
+            <svg
+              className={classes.crossSVG}
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M11.7851 0.471404L11.3137 0L5.89256 5.42115L0.471404 0L0 0.471404L5.42115 5.89256L0 11.3137L0.471404 11.7851L5.89256 6.36396L11.3137 11.7851L11.7851 11.3137L6.36396 5.89256L11.7851 0.471404Z"
+                fill="#494C6B"
+              />
+            </svg>
+          </button>
+        </li>
+      )}
+    </Draggable>
   );
 }
 
