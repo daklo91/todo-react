@@ -16,7 +16,6 @@ function App() {
   const [filterState, setFilterState] = useState("all");
 
   useEffect(() => {
-    console.log("todolistChanged");
     localStorage.setItem("todos", JSON.stringify(todoListData));
   }, [todoListData]);
 
