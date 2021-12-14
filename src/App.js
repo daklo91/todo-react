@@ -15,7 +15,10 @@ function App() {
   );
   const [filterState, setFilterState] = useState("all");
 
-  localStorage.setItem("todos", JSON.stringify(todoListData));
+  useEffect(() => {
+    console.log("todolistChanged");
+    localStorage.setItem("todos", JSON.stringify(todoListData));
+  }, [todoListData]);
 
   const changeThemeHandler = (theme) => {
     setPrefferedTheme(() => {
