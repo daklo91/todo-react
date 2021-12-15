@@ -10,13 +10,35 @@ function TodoItem(props) {
     props.handleDeleteTodoItem(props.id);
   }
 
+  let clicks = 0;
+  const targetText = (e, id) => {
+    e.stopPropagation();
+    clicks++;
+    setTimeout(() => {
+      clicks = 0;
+    }, 1000);
+    if (clicks === 2) {
+      window.getSelection().selectAllChildren(document.getElementById(id));
+    }
+  };
+
+  function clearSelection() {
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    } else if (document.selection) {
+      document.selection.empty();
+    }
+  }
+
   return (
     <Draggable draggableId={props.id} index={props.index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <li
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          className={snapshot.isDragging ? classes.isDragging : null}
+          onClick={clearSelection}
         >
           <div className={classes.groupCheckmarkText}>
             <button
@@ -51,6 +73,8 @@ function TodoItem(props) {
               </div>
             </button>
             <div
+              id={props.id}
+              onClick={(e) => targetText(e, props.id)}
               className={`${classes.text} ${
                 props.complete === true ? classes.textComplete : null
               }`}

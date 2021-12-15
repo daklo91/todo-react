@@ -6,6 +6,11 @@ li {
   border-bottom: var(--border-color) solid 1px;
 }
 
+.isDragging {
+  background-color: var(--ui-bg-color);
+  border-radius: 5px;
+}
+
 .groupCheckmarkText {
   display: flex;
   align-items: center;
@@ -51,6 +56,7 @@ li {
   font-family: "Josefin Sans", sans-serif;
   font-size: 12px;
   margin-left: 12px;
+  cursor: text;
 }
 
 .textComplete {
@@ -65,6 +71,10 @@ li {
 }
 
 li:hover .svgButton {
+  visibility: visible;
+}
+
+li:focus .svgButton {
   visibility: visible;
 }
 
