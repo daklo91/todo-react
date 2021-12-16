@@ -13,7 +13,7 @@
 
 .container {
   margin: auto;
-  width: 327px;
+  max-width: 327px;
 }
 
 .instructionText {
@@ -22,6 +22,7 @@
   margin-top: 40px;
   font-size: 14px;
   letter-spacing: -0.19px;
+  margin-bottom: 20px;
 }
 
 .hideFilter {
@@ -39,7 +40,7 @@
   }
 
   .container {
-    width: 540px;
+    max-width: 540px;
   }
 
   .instructionText {

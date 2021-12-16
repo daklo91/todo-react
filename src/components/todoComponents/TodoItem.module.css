@@ -57,8 +57,8 @@ li {
   font-size: 12px;
   margin-left: 12px;
   cursor: text;
-  word-wrap: break-word;
-  width: 235px;
+  overflow-wrap: break-word;
+  max-width: 230px;
 }
 
 .textComplete {
@@ -70,6 +70,7 @@ li {
   display: flex;
   align-items: center;
   visibility: hidden;
+  margin-left: 13px;
 }
 
 li:hover .svgButton {
@@ -127,6 +128,12 @@ li:focus .svgButton {
   }
 }
 
+@media screen and (min-width: 700px) {
+  .text {
+    max-width: 500px;
+  }
+}
+
 .moveItemOnEnter {
   opacity: 50%;
 }
@@ -137,4 +144,28 @@ li:focus .svgButton {
 
 .dragEnter {
   pointer-events: none;
+}
+
+@media only screen and (max-width: 340px) {
+  li {
+    padding: 16px 10px;
+  }
+}
+
+@media only screen and (max-width: 310px) {
+  .text {
+    max-width: 210px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .text {
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .text {
+    word-break: break-all;
+  }
 }

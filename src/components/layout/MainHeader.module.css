@@ -15,6 +15,12 @@ header {
   filter: brightness(90%);
 }
 
+@media only screen and (max-width: 340px) {
+  header {
+    padding: 0px 10px;
+  }
+}
+
 @media only screen and (min-width: 700px) {
   .logo {
     height: 30px;
