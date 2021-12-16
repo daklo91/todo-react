@@ -78,6 +78,15 @@ li:focus .svgButton {
   visibility: visible;
 }
 
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
+  .svgButton {
+    display: flex;
+    align-items: center;
+    visibility: visible;
+  }
+}
+
 .crossSVG:hover {
   filter: brightness(90%);
 }
