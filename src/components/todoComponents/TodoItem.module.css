@@ -69,8 +69,10 @@ li {
 .svgButton {
   display: flex;
   align-items: center;
+  justify-content: center;
   visibility: hidden;
-  margin-left: 13px;
+  height: 18px;
+  width: 18px;
 }
 
 li:hover .svgButton {
@@ -103,6 +105,11 @@ li:focus .svgButton {
   .checkmarkBorder {
     height: 24px;
     width: 24px;
+  }
+
+  .svgButton {
+    height: 22px;
+    width: 22px;
   }
 
   .crossSVG {
