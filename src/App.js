@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import MainHeader from "./components/layout/MainHeader";
 import TodoList from "./components/todoComponents/TodoList";
 import classes from "./App.module.css";
 import CreateTodo from "./components/todoComponents/CreateTodo";
 import TodoFilter from "./components/todoComponents/TodoFilter";
+import Snackbar from "./components/UI/Snackbar";
 
 function App() {
   const [prefferedTheme, setPrefferedTheme] = useState("dark");
@@ -14,6 +15,9 @@ function App() {
       : []
   );
   const [filterState, setFilterState] = useState("all");
+  const [trashCan, setTrashCan] = useState([]);
+  const [snackbarTimer, setSnackbarTimer] = useState(false);
+  const timer = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todoListData));
@@ -70,12 +74,34 @@ function App() {
   };
 
   function handleDeleteTodoItem(id) {
+    clearTimeout(timer.current);
+    setSnackbarTimer(true);
+    timer.current = setTimeout(() => {
+      setSnackbarTimer(false);
+      setTrashCan([]);
+    }, 5000);
+
+    const oldIndex = {
+      oldIndex: todoListData.findIndex((object) => object.id === id),
+    };
+    let deletedObject = {
+      ...todoListData.filter((object) => object.id === id),
+    };
+    deletedObject = deletedObject["0"];
+    Object.assign(deletedObject, { oldIndex: oldIndex.oldIndex });
+    setTrashCan((prevState) => [...prevState, deletedObject]);
     setTodoListData(todoListData.filter((object) => object.id !== id));
   }
 
   function handleDeleteAllTodoItems() {
     setTodoListData(todoListData.filter((object) => object.complete === false));
   }
+
+  const undoDeletedItem = () => {
+    const popped = trashCan.pop();
+    const newArray = todoListData.splice(popped.oldIndex, 0, popped);
+    setTodoListData(todoListData.splice(0, todoListData.length, newArray));
+  };
 
   const getInputTextHandler = (e, clicked) => {
     const id = Math.random().toString(16).slice(2);
@@ -115,6 +141,9 @@ function App() {
       <div className={classes.instructionText}>
         Drag and drop to reorder list
       </div>
+      {snackbarTimer && trashCan.length ? (
+        <Snackbar undoDeletedItem={undoDeletedItem} trashCan={trashCan} />
+      ) : null}
     </div>
   );
 }

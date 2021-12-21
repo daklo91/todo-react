@@ -1,0 +1,27 @@
+.container {
+  position: fixed;
+  padding: 15px;
+  background-color: #1c1e30;
+  width: 200px;
+  color: var(--small-text-color);
+  font-size: 0.9rem;
+  border-radius: 5px;
+  left: 5%;
+  bottom: 5%;
+}
+
+@media only screen and (max-width: 340px) {
+  .container {
+    left: 0;
+    width: 90%;
+  }
+}
+
+.button {
+  float: right;
+  color: #3a7cfd;
+}
+
+.button:hover {
+  color: #4986ff;
+}
