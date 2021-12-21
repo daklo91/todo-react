@@ -116,7 +116,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={classes.app}>
       <div className={classes.background}></div>
       <div className={classes.container}>
         <MainHeader changeTheme={changeThemeHandler} theme={prefferedTheme} />

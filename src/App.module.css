@@ -16,6 +16,11 @@
   max-width: 327px;
 }
 
+.app {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 .instructionText {
   color: var(--small-text-color);
   text-align: center;

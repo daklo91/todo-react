@@ -1,13 +1,26 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import TodoItemClasses from "./TodoItem.module.css";
 import classes from "./CreateTodo.module.css";
+import Confetti from "react-dom-confetti";
+import confettiConfig from "../../assets/config/confettiConfig";
 
 function CreateTodo(props) {
   const inputRef = useRef();
+  const [confetti, setConfetti] = useState(false);
+
+  useEffect(() => {
+    const conffetiTime = setTimeout(() => {
+      setConfetti(false);
+    }, 100);
+    return () => {
+      clearTimeout(conffetiTime);
+    };
+  }, [confetti]);
 
   function submitHandler(e, clicked) {
     if (inputRef.current.value !== "" && clicked === "clicked") {
       props.getInputText(inputRef.current.value, clicked);
+      setConfetti(true);
     } else if (inputRef.current.value !== "" && clicked !== "clicked") {
       props.getInputText(inputRef.current.value);
     }
@@ -21,6 +34,7 @@ function CreateTodo(props) {
         onClick={(e) => submitHandler(e, "clicked")}
         className={TodoItemClasses.checkmarkButton}
       >
+        <Confetti active={confetti} config={confettiConfig} />
         <div className={TodoItemClasses.checkmarkBorder}>
           <div className={TodoItemClasses.checkmark}></div>
         </div>

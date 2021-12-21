@@ -1,5 +1,7 @@
 import classes from "./TodoItem.module.css";
 import { Draggable } from "react-beautiful-dnd";
+import Confetti from "react-dom-confetti";
+import confettiConfig from "../../assets/config/confettiConfig";
 
 function TodoItem(props) {
   function completeToggle() {
@@ -45,6 +47,7 @@ function TodoItem(props) {
               className={classes.checkmarkButton}
               onClick={completeToggle}
             >
+              <Confetti active={props.complete} config={confettiConfig} />
               <div
                 className={`
                 ${classes.checkmarkBorder} ${
