@@ -26,9 +26,13 @@ function ClearTodo(props) {
         />
       </div>
       <button
+        title="Clear all completed todos"
         className={classes.clearButton}
-        onClick={() => setModalIsOpen(true)}
-        // onClick={props.handleDeleteAllTodoItems}
+        onClick={() =>
+          props.todoListData.find((todo) => todo.complete === true)
+            ? setModalIsOpen(true)
+            : null
+        }
       >
         Clear Completed
       </button>

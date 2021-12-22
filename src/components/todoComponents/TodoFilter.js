@@ -8,6 +8,7 @@ function TodoFilter(props) {
   return (
     <div className={classes.container}>
       <button
+        title="Show all todos"
         className={`${classes.button} ${
           props.filterState === "all" ? classes.active : null
         }`}
@@ -16,6 +17,7 @@ function TodoFilter(props) {
         All
       </button>
       <button
+        title="Show active todos"
         className={`${classes.button} ${
           props.filterState === false ? classes.active : null
         }`}
@@ -24,6 +26,7 @@ function TodoFilter(props) {
         Active
       </button>
       <button
+        title="Show completed todos"
         className={`${classes.button} ${
           props.filterState === true ? classes.active : null
         }`}

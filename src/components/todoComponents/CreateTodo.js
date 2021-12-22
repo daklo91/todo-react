@@ -31,6 +31,7 @@ function CreateTodo(props) {
   return (
     <div className={classes.container}>
       <button
+        title="Create a completed todo"
         onClick={(e) => submitHandler(e, "clicked")}
         className={TodoItemClasses.checkmarkButton}
       >

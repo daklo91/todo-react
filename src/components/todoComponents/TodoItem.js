@@ -42,7 +42,14 @@ function TodoItem(props) {
           className={snapshot.isDragging ? classes.isDragging : null}
           onClick={clearSelection}
         >
-          <div className={classes.groupCheckmarkText}>
+          <div
+            className={classes.groupCheckmarkText}
+            title={
+              props.complete === true
+                ? "Uncomplete this todo"
+                : "Complete this todo"
+            }
+          >
             <button
               className={classes.checkmarkButton}
               onClick={completeToggle}
@@ -85,7 +92,11 @@ function TodoItem(props) {
               {props.text}
             </div>
           </div>
-          <button className={classes.svgButton} onClick={deleteTodoItem}>
+          <button
+            className={classes.svgButton}
+            onClick={deleteTodoItem}
+            title="Delete this todo"
+          >
             <svg
               className={classes.crossSVG}
               width="12"

@@ -28,7 +28,11 @@ function MainHeader(props) {
           fill="white"
         />
       </svg>
-      <button onClick={toggleChangeTheme} className={classes.darkModeButton}>
+      <button
+        onClick={toggleChangeTheme}
+        className={classes.darkModeButton}
+        title="Switch theme to light/dark"
+      >
         {props.theme === "dark" ? (
           <svg
             className={classes.sunSVG}
