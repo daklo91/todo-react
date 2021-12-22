@@ -54,7 +54,7 @@ li {
 .text {
   color: var(--text-color);
   font-family: "Josefin Sans", sans-serif;
-  font-size: 12px;
+  font-size: 1rem;
   margin-left: 12px;
   cursor: text;
   overflow-wrap: break-word;
@@ -122,7 +122,7 @@ li:focus .svgButton {
   }
 
   .text {
-    font-size: 18px;
+    font-size: 1.125rem;
     margin-left: 24px;
     width: 415px;
   }

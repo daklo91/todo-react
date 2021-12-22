@@ -15,7 +15,7 @@
 .input {
   all: unset;
   margin-left: 12px;
-  font-size: 12px;
+  font-size: 1rem;
   padding: 18px 0;
   width: 100%;
   caret-color: #3a7cfd;
@@ -34,7 +34,7 @@
   }
 
   .input {
-    font-size: 18px;
+    font-size: 1.125rem;
     padding: 22.5px 0px;
     margin-left: 24px;
     letter-spacing: -0.25px;
