@@ -90,7 +90,10 @@ function App() {
     deletedObject = deletedObject["0"];
     Object.assign(deletedObject, { oldIndex: oldIndex.oldIndex });
     setTrashCan((prevState) => [...prevState, deletedObject]);
-    setTodoListData(todoListData.filter((object) => object.id !== id));
+    const newListData = todoListData.filter((object) => object.id !== id);
+    setTodoListData((prevState) =>
+      prevState.splice(0, todoListData.length, ...newListData)
+    );
   }
 
   function handleDeleteAllTodoItems() {

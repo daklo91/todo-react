@@ -4,6 +4,13 @@ li {
   padding: 16px 20px;
   justify-content: space-between;
   border-bottom: var(--border-color) solid 1px;
+  opacity: 0;
+  transition: opacity 0.7s;
+}
+
+.fade {
+  opacity: 1;
+  transition: opacity 0.7s ease-in-out;
 }
 
 .isDragging {

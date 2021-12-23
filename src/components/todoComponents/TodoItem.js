@@ -2,14 +2,21 @@ import classes from "./TodoItem.module.css";
 import { Draggable } from "react-beautiful-dnd";
 import Confetti from "react-dom-confetti";
 import confettiConfig from "../../assets/config/confettiConfig";
+import { useEffect, useRef, useState } from "react";
 
 function TodoItem(props) {
+  const [fadeState, setFadeState] = useState(false);
+  const enterTimer = useRef(null);
+  const leaveTimer = useRef(null);
   function completeToggle() {
     props.completeToggle(props.id);
   }
 
   function deleteTodoItem() {
-    props.handleDeleteTodoItem(props.id);
+    setFadeState(false);
+    leaveTimer.current = setTimeout(() => {
+      props.handleDeleteTodoItem(props.id);
+    }, 500);
   }
 
   let clicks = 0;
@@ -32,6 +39,19 @@ function TodoItem(props) {
     }
   }
 
+  useEffect(() => {
+    enterTimer.current = setTimeout(() => {
+      setFadeState(true);
+    }, 0);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(enterTimer.current);
+      clearTimeout(leaveTimer.current);
+    };
+  }, []);
+
   return (
     <Draggable draggableId={props.id} index={props.index}>
       {(provided, snapshot) => (
@@ -39,7 +59,9 @@ function TodoItem(props) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className={snapshot.isDragging ? classes.isDragging : null}
+          className={`${snapshot.isDragging ? classes.isDragging : null} ${
+            fadeState === true ? classes.fade : null
+          }`}
           onClick={clearSelection}
         >
           <div

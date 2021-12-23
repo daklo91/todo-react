@@ -2,8 +2,19 @@ import TodoItem from "./TodoItem";
 import ClearTodo from "./ClearTodo";
 import classes from "./TodoList.module.css";
 import { Droppable, DragDropContext } from "react-beautiful-dnd";
+import { useEffect, useState } from "react";
 
 function TodoList(props) {
+  const [maxHeightState, setMaxHeightState] = useState(null);
+  const [minHeightState, setMinHeightState] = useState(null);
+
+  const itemNumber = props.todoListData.length;
+
+  useEffect(() => {
+    setMaxHeightState(57 * itemNumber + 1);
+    setMinHeightState(57 * itemNumber + 1);
+  }, [itemNumber]);
+
   function handleCompleteToggle(id) {
     props.handleCompleteToggle(id);
   }
@@ -21,7 +32,14 @@ function TodoList(props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="oneAndOnly">
           {(provided) => (
-            <ul ref={provided.innerRef} {...provided.droppableProps}>
+            <ul
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              style={{
+                maxHeight: maxHeightState + "px",
+                minHeight: minHeightState + "px",
+              }}
+            >
               {props.filterState === "all"
                 ? props.todoListData.map((todo, index) => (
                     <TodoItem
