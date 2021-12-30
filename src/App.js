@@ -70,7 +70,7 @@ function App() {
     tempArray.splice(source.index, 1);
     tempArray.splice(destination.index, 0, draggedItem);
 
-    setTodoListData(todoListData.splice(0, todoListData.length, tempArray));
+    setTodoListData(tempArray);
   };
 
   function handleDeleteTodoItem(id) {

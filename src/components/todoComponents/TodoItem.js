@@ -16,7 +16,7 @@ function TodoItem(props) {
     setFadeState(false);
     leaveTimer.current = setTimeout(() => {
       props.handleDeleteTodoItem(props.id);
-    }, 500);
+    }, 400);
   }
 
   let clicks = 0;
@@ -42,7 +42,7 @@ function TodoItem(props) {
   useEffect(() => {
     enterTimer.current = setTimeout(() => {
       setFadeState(true);
-    }, 0);
+    }, 10);
   }, []);
 
   useEffect(() => {
@@ -55,87 +55,90 @@ function TodoItem(props) {
   return (
     <Draggable draggableId={props.id} index={props.index}>
       {(provided, snapshot) => (
-        <li
+        <div
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className={`${snapshot.isDragging ? classes.isDragging : null} ${
-            fadeState === true ? classes.fade : null
-          }`}
-          onClick={clearSelection}
         >
-          <div
-            className={classes.groupCheckmarkText}
-            title={
-              props.complete === true
-                ? "Uncomplete this todo"
-                : "Complete this todo"
-            }
+          <li
+            className={`${snapshot.isDragging ? classes.isDragging : null} ${
+              fadeState === true ? classes.fade : null
+            }`}
+            onClick={clearSelection}
           >
-            <button
-              className={classes.checkmarkButton}
-              onClick={completeToggle}
-            >
-              <Confetti active={props.complete} config={confettiConfig} />
-              <div
-                className={`
-                ${classes.checkmarkBorder} ${
-                  props.complete === true ? classes.checkMarkActive : null
-                }
-              `}
-              >
-                {props.complete === true ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="11"
-                    height="9"
-                    viewBox="0 0 11 9"
-                    className={classes.checkSVG}
-                  >
-                    <path
-                      fill="none"
-                      stroke="#FFF"
-                      strokeWidth="2"
-                      d="M1 4.304L3.696 7l6-6"
-                    />
-                  </svg>
-                ) : (
-                  <div className={classes.checkmark}></div>
-                )}
-              </div>
-            </button>
             <div
-              id={props.id}
-              onClick={(e) => targetText(e, props.id)}
-              className={`${classes.text} ${
-                props.complete === true ? classes.textComplete : null
-              }`}
+              className={classes.groupCheckmarkText}
+              title={
+                props.complete === true
+                  ? "Uncomplete this todo"
+                  : "Complete this todo"
+              }
             >
-              {props.text}
+              <button
+                className={classes.checkmarkButton}
+                onClick={completeToggle}
+              >
+                <Confetti active={props.complete} config={confettiConfig} />
+                <div
+                  className={`
+                ${classes.checkmarkBorder} ${
+                    props.complete === true ? classes.checkMarkActive : null
+                  }
+              `}
+                >
+                  {props.complete === true ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="11"
+                      height="9"
+                      viewBox="0 0 11 9"
+                      className={classes.checkSVG}
+                    >
+                      <path
+                        fill="none"
+                        stroke="#FFF"
+                        strokeWidth="2"
+                        d="M1 4.304L3.696 7l6-6"
+                      />
+                    </svg>
+                  ) : (
+                    <div className={classes.checkmark}></div>
+                  )}
+                </div>
+              </button>
+              <div
+                id={props.id}
+                onClick={(e) => targetText(e, props.id)}
+                className={`${classes.text} ${
+                  props.complete === true ? classes.textComplete : null
+                }`}
+              >
+                {props.text}
+              </div>
             </div>
-          </div>
-          <button
-            className={classes.svgButton}
-            onClick={deleteTodoItem}
-            title="Delete this todo"
-          >
-            <svg
-              className={classes.crossSVG}
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <button
+              className={classes.svgButton}
+              onClick={deleteTodoItem}
+              title="Delete this todo"
             >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M11.7851 0.471404L11.3137 0L5.89256 5.42115L0.471404 0L0 0.471404L5.42115 5.89256L0 11.3137L0.471404 11.7851L5.89256 6.36396L11.3137 11.7851L11.7851 11.3137L6.36396 5.89256L11.7851 0.471404Z"
-                fill="#494C6B"
-              />
-            </svg>
-          </button>
-        </li>
+              <svg
+                className={classes.crossSVG}
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M11.7851 0.471404L11.3137 0L5.89256 5.42115L0.471404 0L0 0.471404L5.42115 5.89256L0 11.3137L0.471404 11.7851L5.89256 6.36396L11.3137 11.7851L11.7851 11.3137L6.36396 5.89256L11.7851 0.471404Z"
+                  fill="#494C6B"
+                />
+              </svg>
+            </button>
+          </li>
+        </div>
       )}
     </Draggable>
   );

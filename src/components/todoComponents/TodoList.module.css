@@ -1,8 +1,6 @@
 ul {
   padding: 0;
   margin-bottom: 0;
-  transition: max-height 0.3s;
-  transition: min-height 0.3s;
 }
 
 .container {
