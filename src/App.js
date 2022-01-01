@@ -69,7 +69,7 @@ function App() {
 
     tempArray.splice(source.index, 1);
     tempArray.splice(destination.index, 0, draggedItem);
-
+    localStorage.setItem("todos", JSON.stringify(todoListData));
     setTodoListData(tempArray);
   };
 
@@ -112,10 +112,16 @@ function App() {
       text: e,
       id: id,
       complete: clicked ? true : false,
+      hasAnimated: false,
     };
     setTodoListData(() => {
       return todoListData.concat(obj);
     });
+  };
+
+  const itemHasAnimated = (id) => {
+    const object = todoListData.find((object) => id === object.id);
+    object.hasAnimated = true;
   };
 
   return (
@@ -133,6 +139,7 @@ function App() {
           handleSetFilterState={changeFilterState}
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
           filterStateBigMedia={filterState}
+          itemHasAnimated={itemHasAnimated}
         />
         <div className={classes.hideFilter}>
           <TodoFilter

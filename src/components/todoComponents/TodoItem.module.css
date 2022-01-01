@@ -6,7 +6,6 @@ li {
   border-bottom: var(--border-color) solid 1px;
   opacity: 0;
   height: 0;
-  transition: all 0.4s ease-out;
   transform: rotateY(-90deg);
   transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
 }
@@ -129,7 +128,7 @@ li:focus .svgButton {
     width: 18px;
   }
 
-  li {
+  .fade {
     padding: 16px 24px;
   }
 

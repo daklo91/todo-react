@@ -30,6 +30,7 @@ function TodoList(props) {
                       text={todo.text}
                       completeToggle={handleCompleteToggle}
                       id={todo.id}
+                      hasAnimated={todo.hasAnimated}
                       complete={todo.complete}
                       handleDeleteTodoItem={handleDeleteTodoItem}
                       handleDndGetDraggedItemId={
@@ -38,6 +39,7 @@ function TodoList(props) {
                       handleDndGetDropOverItemId={
                         props.handleDndGetDropOverItemId
                       }
+                      itemHasAnimated={props.itemHasAnimated}
                     />
                   ))
                 : props.todoListData
@@ -47,10 +49,12 @@ function TodoList(props) {
                         index={index}
                         key={todo.id}
                         text={todo.text}
+                        hasAnimated={todo.hasAnimated}
                         completeToggle={handleCompleteToggle}
                         id={todo.id}
                         complete={todo.complete}
                         handleDeleteTodoItem={handleDeleteTodoItem}
+                        itemHasAnimated={props.itemHasAnimated}
                         handleDndGetDraggedItemId={
                           props.handleDndGetDraggedItemId
                         }

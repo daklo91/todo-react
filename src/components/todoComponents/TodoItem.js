@@ -5,7 +5,9 @@ import confettiConfig from "../../assets/config/confettiConfig";
 import { useEffect, useRef, useState } from "react";
 
 function TodoItem(props) {
-  const [fadeState, setFadeState] = useState(false);
+  const [fadeState, setFadeState] = useState(
+    props.hasAnimated === true ? true : false
+  );
   const enterTimer = useRef(null);
   const leaveTimer = useRef(null);
   function completeToggle() {
@@ -39,11 +41,18 @@ function TodoItem(props) {
     }
   }
 
+  const objectId = props.id;
+  const itemHasAnimated = props.itemHasAnimated;
+  const hasAnimated = props.hasAnimated;
+
   useEffect(() => {
     enterTimer.current = setTimeout(() => {
       setFadeState(true);
+      if (hasAnimated === false) {
+        itemHasAnimated(objectId);
+      }
     }, 10);
-  }, []);
+  }, [objectId, itemHasAnimated, hasAnimated]);
 
   useEffect(() => {
     return () => {
