@@ -1,18 +1,20 @@
 li {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding: 0px 20px;
   justify-content: space-between;
   border-bottom: var(--border-color) solid 0px;
   opacity: 0;
-  height: 0;
+  /* height: 0; */
+  max-height: 0;
   transform: rotateY(-90deg);
   transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
 }
 
 .fade {
   opacity: 1;
-  height: 1em;
+  /* height: 1em; */
+  max-height: 10rem;
   padding: 16px 20px;
   transform: none;
   transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
@@ -26,7 +28,7 @@ li {
 
 .groupCheckmarkText {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .checkmarkBorder {
@@ -69,8 +71,10 @@ li {
   font-family: "Josefin Sans", sans-serif;
   margin-left: 12px;
   cursor: text;
+  max-height: 10rem;
   overflow-wrap: break-word;
   max-width: 230px;
+  overflow: auto;
 }
 
 .textComplete {
