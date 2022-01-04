@@ -8,7 +8,9 @@ import TodoFilter from "./components/todoComponents/TodoFilter";
 import Snackbar from "./components/UI/Snackbar";
 
 function App() {
-  const [prefferedTheme, setPrefferedTheme] = useState("dark");
+  const [prefferedTheme, setPrefferedTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
+  );
   const [todoListData, setTodoListData] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))

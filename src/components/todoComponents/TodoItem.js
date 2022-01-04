@@ -6,7 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { Fragment } from "react";
 
 function TodoItem(props) {
-  const [fadeState, setFadeState] = useState(false);
+  const [fadeState, setFadeState] = useState(
+    props.hasAnimated === true ? true : false
+  );
   // const enterTimer = useRef(null);
   const leaveTimer = useRef(null);
   function completeToggle() {
@@ -56,7 +58,10 @@ function TodoItem(props) {
   // const filterState = props.filterState;
   // const complete = props.complete;
 
+  const hasAnimatedFunction = props.itemHasAnimated;
+
   useEffect(() => {
+    hasAnimatedFunction(props.id);
     setFadeState(true);
     if (props.filterState === "all") {
       setFadeState(true);
@@ -65,7 +70,7 @@ function TodoItem(props) {
     } else if (props.filterState === false && props.complete === true) {
       setFadeState(false);
     }
-  }, [props.filterState, props.complete]);
+  }, [props.filterState, props.complete, hasAnimatedFunction, props.id]);
 
   useEffect(() => {
     return () => {
