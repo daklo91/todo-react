@@ -13,11 +13,15 @@ function ClearTodo(props) {
     setModalIsOpen(false);
   };
 
+  const uncompleteItemArray = props.todoListData.filter(
+    (todo) => todo.complete === false
+  ).length;
+
   return (
     <div className={classes.container}>
       <span className={classes.itemCounter}>
-        {props.todoListData.filter((todo) => todo.complete === false).length}{" "}
-        items left
+        {uncompleteItemArray} item
+        {uncompleteItemArray > 1 ? "s" : null} left
       </span>
       <div className={classes.hideFilter}>
         <TodoFilter

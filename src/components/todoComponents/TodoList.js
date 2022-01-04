@@ -2,8 +2,20 @@ import TodoItem from "./TodoItem";
 import ClearTodo from "./ClearTodo";
 import classes from "./TodoList.module.css";
 import { Droppable, DragDropContext } from "react-beautiful-dnd";
+import { useEffect, useState } from "react";
 
 function TodoList(props) {
+  const [showList, setShowList] = useState(false);
+
+  useEffect(() => {
+    const showListTime = setTimeout(() => {
+      setShowList(true);
+    }, 10);
+    return () => {
+      clearTimeout(showListTime);
+    };
+  });
+
   function handleCompleteToggle(id) {
     props.handleCompleteToggle(id);
   }
@@ -21,8 +33,28 @@ function TodoList(props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="oneAndOnly">
           {(provided) => (
-            <ul ref={provided.innerRef} {...provided.droppableProps}>
-              {props.filterState === "all"
+            <ul
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={showList === true ? classes.show : null}
+            >
+              {props.todoListData.map((todo, index) => (
+                <TodoItem
+                  index={index}
+                  key={todo.id}
+                  text={todo.text}
+                  completeToggle={handleCompleteToggle}
+                  id={todo.id}
+                  hasAnimated={todo.hasAnimated}
+                  complete={todo.complete}
+                  handleDeleteTodoItem={handleDeleteTodoItem}
+                  handleDndGetDraggedItemId={props.handleDndGetDraggedItemId}
+                  handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
+                  itemHasAnimated={props.itemHasAnimated}
+                  filterState={props.filterState}
+                />
+              ))}
+              {/* {props.filterState === "all"
                 ? props.todoListData.map((todo, index) => (
                     <TodoItem
                       index={index}
@@ -62,7 +94,7 @@ function TodoList(props) {
                           props.handleDndGetDropOverItemId
                         }
                       />
-                    ))}
+                    ))} */}
               {provided.placeholder}
             </ul>
           )}

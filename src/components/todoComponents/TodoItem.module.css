@@ -3,7 +3,7 @@ li {
   align-items: center;
   padding: 0px 20px;
   justify-content: space-between;
-  border-bottom: var(--border-color) solid 1px;
+  border-bottom: var(--border-color) solid 0px;
   opacity: 0;
   height: 0;
   transform: rotateY(-90deg);
@@ -16,6 +16,7 @@ li {
   padding: 16px 20px;
   transform: none;
   transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
+  border-bottom: var(--border-color) solid 1px;
 }
 
 .isDragging {
@@ -166,7 +167,8 @@ li:focus .svgButton {
 
 @media only screen and (max-width: 340px) {
   li {
-    padding: 16px 10px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
