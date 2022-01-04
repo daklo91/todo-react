@@ -5,8 +5,10 @@ function MainHeader(props) {
     let theme = props.theme;
     if (theme === "dark") {
       theme = "light";
+      localStorage.setItem("theme", "light");
     } else if (theme === "light") {
       theme = "dark";
+      localStorage.setItem("theme", "dark");
     }
     props.changeTheme(theme);
   }

@@ -8,7 +8,9 @@ import TodoFilter from "./components/todoComponents/TodoFilter";
 import Snackbar from "./components/UI/Snackbar";
 
 function App() {
-  const [prefferedTheme, setPrefferedTheme] = useState("dark");
+  const [prefferedTheme, setPrefferedTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
+  );
   const [todoListData, setTodoListData] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
@@ -69,8 +71,8 @@ function App() {
 
     tempArray.splice(source.index, 1);
     tempArray.splice(destination.index, 0, draggedItem);
-
-    setTodoListData(todoListData.splice(0, todoListData.length, tempArray));
+    localStorage.setItem("todos", JSON.stringify(todoListData));
+    setTodoListData(tempArray);
   };
 
   function handleDeleteTodoItem(id) {
@@ -90,7 +92,10 @@ function App() {
     deletedObject = deletedObject["0"];
     Object.assign(deletedObject, { oldIndex: oldIndex.oldIndex });
     setTrashCan((prevState) => [...prevState, deletedObject]);
-    setTodoListData(todoListData.filter((object) => object.id !== id));
+    const newListData = todoListData.filter((object) => object.id !== id);
+    setTodoListData((prevState) =>
+      prevState.splice(0, todoListData.length, ...newListData)
+    );
   }
 
   function handleDeleteAllTodoItems() {
@@ -109,10 +114,16 @@ function App() {
       text: e,
       id: id,
       complete: clicked ? true : false,
+      hasAnimated: false,
     };
     setTodoListData(() => {
       return todoListData.concat(obj);
     });
+  };
+
+  const itemHasAnimated = (id) => {
+    const object = todoListData.find((object) => id === object.id);
+    object.hasAnimated = true;
   };
 
   return (
@@ -130,6 +141,7 @@ function App() {
           handleSetFilterState={changeFilterState}
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
           filterStateBigMedia={filterState}
+          itemHasAnimated={itemHasAnimated}
         />
         <div className={classes.hideFilter}>
           <TodoFilter

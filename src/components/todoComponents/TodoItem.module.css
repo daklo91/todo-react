@@ -1,8 +1,23 @@
 li {
   display: flex;
-  align-items: center;
-  padding: 16px 20px;
+  /* align-items: center; */
+  padding: 0px 20px;
   justify-content: space-between;
+  border-bottom: var(--border-color) solid 0px;
+  opacity: 0;
+  /* height: 0; */
+  max-height: 0;
+  transform: rotateY(-90deg);
+  transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
+}
+
+.fade {
+  opacity: 1;
+  /* height: 1em; */
+  max-height: 10rem;
+  padding: 16px 20px;
+  transform: none;
+  transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
   border-bottom: var(--border-color) solid 1px;
 }
 
@@ -13,7 +28,7 @@ li {
 
 .groupCheckmarkText {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .checkmarkBorder {
@@ -54,11 +69,12 @@ li {
 .text {
   color: var(--text-color);
   font-family: "Josefin Sans", sans-serif;
-  font-size: 1rem;
   margin-left: 12px;
   cursor: text;
+  max-height: 10rem;
   overflow-wrap: break-word;
   max-width: 230px;
+  overflow: auto;
 }
 
 .textComplete {
@@ -117,7 +133,7 @@ li:focus .svgButton {
     width: 18px;
   }
 
-  li {
+  .fade {
     padding: 16px 24px;
   }
 
@@ -155,7 +171,8 @@ li:focus .svgButton {
 
 @media only screen and (max-width: 340px) {
   li {
-    padding: 16px 10px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
