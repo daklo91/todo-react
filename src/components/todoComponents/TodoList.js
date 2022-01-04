@@ -52,6 +52,7 @@ function TodoList(props) {
                   handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
                   itemHasAnimated={props.itemHasAnimated}
                   filterState={props.filterState}
+                  deleteAllAnimation={props.deleteAllAnimation}
                 />
               ))}
               {/* {props.filterState === "all"

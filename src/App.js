@@ -19,6 +19,7 @@ function App() {
   const [filterState, setFilterState] = useState("all");
   const [trashCan, setTrashCan] = useState([]);
   const [snackbarTimer, setSnackbarTimer] = useState(false);
+  const [deleteAllAnimation, setdeleteAllAnimation] = useState(false);
   const timer = useRef(null);
 
   useEffect(() => {
@@ -99,7 +100,14 @@ function App() {
   }
 
   function handleDeleteAllTodoItems() {
-    setTodoListData(todoListData.filter((object) => object.complete === false));
+    setdeleteAllAnimation(true);
+    setTimeout(() => {
+      setTodoListData(
+        // setFilterState("all"),
+        todoListData.filter((object) => object.complete === false),
+        setdeleteAllAnimation(false)
+      );
+    }, 400);
   }
 
   const undoDeletedItem = () => {
@@ -142,6 +150,7 @@ function App() {
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
           filterStateBigMedia={filterState}
           itemHasAnimated={itemHasAnimated}
+          deleteAllAnimation={deleteAllAnimation}
         />
         <div className={classes.hideFilter}>
           <TodoFilter

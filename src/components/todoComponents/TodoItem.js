@@ -6,9 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Fragment } from "react";
 
 function TodoItem(props) {
-  const [fadeState, setFadeState] = useState(
-    props.hasAnimated === true ? true : false
-  );
+  const [fadeState, setFadeState] = useState(false);
   // const enterTimer = useRef(null);
   const leaveTimer = useRef(null);
   function completeToggle() {
@@ -78,6 +76,12 @@ function TodoItem(props) {
       clearTimeout(leaveTimer.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (props.deleteAllAnimation === true && props.complete === true) {
+      setFadeState(false);
+    }
+  }, [props.complete, props.deleteAllAnimation]);
 
   return (
     <Fragment>

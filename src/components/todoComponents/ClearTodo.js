@@ -21,7 +21,7 @@ function ClearTodo(props) {
     <div className={classes.container}>
       <span className={classes.itemCounter}>
         {uncompleteItemArray} item
-        {uncompleteItemArray > 1 ? "s" : null} left
+        {uncompleteItemArray !== 1 ? "s" : null} left
       </span>
       <div className={classes.hideFilter}>
         <TodoFilter
