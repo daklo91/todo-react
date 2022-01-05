@@ -103,7 +103,6 @@ function App() {
     setdeleteAllAnimation(true);
     setTimeout(() => {
       setTodoListData(
-        // setFilterState("all"),
         todoListData.filter((object) => object.complete === false),
         setdeleteAllAnimation(false)
       );
@@ -122,16 +121,10 @@ function App() {
       text: e,
       id: id,
       complete: clicked ? true : false,
-      hasAnimated: false,
     };
     setTodoListData(() => {
       return todoListData.concat(obj);
     });
-  };
-
-  const itemHasAnimated = (id) => {
-    const object = todoListData.find((object) => id === object.id);
-    object.hasAnimated = true;
   };
 
   return (
@@ -149,7 +142,6 @@ function App() {
           handleSetFilterState={changeFilterState}
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
           filterStateBigMedia={filterState}
-          itemHasAnimated={itemHasAnimated}
           deleteAllAnimation={deleteAllAnimation}
         />
         <div className={classes.hideFilter}>

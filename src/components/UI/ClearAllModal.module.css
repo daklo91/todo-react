@@ -25,7 +25,6 @@
 }
 
 .button-container {
-  /* display: block; */
   margin-top: 20px;
 }
 
@@ -49,8 +48,6 @@
     rgba(192, 88, 243, 1) 100%
   );
   color: white;
-  /* text-shadow: -0.5px -0.5px 0 black, 0.5px -0.5px 0 black, -0.5px 0.5px 0 black,
-    0.5px 0.5px 0 black; */
 }
 
 .button:nth-child(2) {

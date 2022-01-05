@@ -45,57 +45,14 @@ function TodoList(props) {
                   text={todo.text}
                   completeToggle={handleCompleteToggle}
                   id={todo.id}
-                  hasAnimated={todo.hasAnimated}
                   complete={todo.complete}
                   handleDeleteTodoItem={handleDeleteTodoItem}
                   handleDndGetDraggedItemId={props.handleDndGetDraggedItemId}
                   handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
-                  itemHasAnimated={props.itemHasAnimated}
                   filterState={props.filterState}
                   deleteAllAnimation={props.deleteAllAnimation}
                 />
               ))}
-              {/* {props.filterState === "all"
-                ? props.todoListData.map((todo, index) => (
-                    <TodoItem
-                      index={index}
-                      key={todo.id}
-                      text={todo.text}
-                      completeToggle={handleCompleteToggle}
-                      id={todo.id}
-                      hasAnimated={todo.hasAnimated}
-                      complete={todo.complete}
-                      handleDeleteTodoItem={handleDeleteTodoItem}
-                      handleDndGetDraggedItemId={
-                        props.handleDndGetDraggedItemId
-                      }
-                      handleDndGetDropOverItemId={
-                        props.handleDndGetDropOverItemId
-                      }
-                      itemHasAnimated={props.itemHasAnimated}
-                    />
-                  ))
-                : props.todoListData
-                    .filter((todo) => todo.complete === props.filterState)
-                    .map((todo, index) => (
-                      <TodoItem
-                        index={index}
-                        key={todo.id}
-                        text={todo.text}
-                        hasAnimated={todo.hasAnimated}
-                        completeToggle={handleCompleteToggle}
-                        id={todo.id}
-                        complete={todo.complete}
-                        handleDeleteTodoItem={handleDeleteTodoItem}
-                        itemHasAnimated={props.itemHasAnimated}
-                        handleDndGetDraggedItemId={
-                          props.handleDndGetDraggedItemId
-                        }
-                        handleDndGetDropOverItemId={
-                          props.handleDndGetDropOverItemId
-                        }
-                      />
-                    ))} */}
               {provided.placeholder}
             </ul>
           )}

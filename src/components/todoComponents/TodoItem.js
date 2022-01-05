@@ -7,7 +7,6 @@ import { Fragment } from "react";
 
 function TodoItem(props) {
   const [fadeState, setFadeState] = useState(false);
-  // const enterTimer = useRef(null);
   const leaveTimer = useRef(null);
   function completeToggle() {
     props.completeToggle(props.id);
@@ -40,26 +39,7 @@ function TodoItem(props) {
     }
   }
 
-  // const objectId = props.id;
-  // const itemHasAnimated = props.itemHasAnimated;
-  // const hasAnimated = props.hasAnimated;
-
-  // useEffect(() => {
-  //   enterTimer.current = setTimeout(() => {
-  //     setFadeState(true);
-  //     if (hasAnimated === false) {
-  //       itemHasAnimated(objectId);
-  //     }
-  //   }, 10);
-  // }, [objectId, itemHasAnimated, hasAnimated]);
-
-  // const filterState = props.filterState;
-  // const complete = props.complete;
-
-  const hasAnimatedFunction = props.itemHasAnimated;
-
   useEffect(() => {
-    hasAnimatedFunction(props.id);
     setFadeState(true);
     if (props.filterState === "all") {
       setFadeState(true);
@@ -68,11 +48,10 @@ function TodoItem(props) {
     } else if (props.filterState === false && props.complete === true) {
       setFadeState(false);
     }
-  }, [props.filterState, props.complete, hasAnimatedFunction, props.id]);
+  }, [props.filterState, props.complete]);
 
   useEffect(() => {
     return () => {
-      // clearTimeout(enterTimer.current);
       clearTimeout(leaveTimer.current);
     };
   }, []);
