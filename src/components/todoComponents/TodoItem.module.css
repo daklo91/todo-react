@@ -75,6 +75,7 @@ li {
   max-width: 230px;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.4s;
 }
 
 .showText {
@@ -82,13 +83,13 @@ li {
   max-height: 1000rem;
 }
 
-.highLight {
-  color: rgb(230, 180, 255);
-}
-
 .textComplete {
   color: var(--text-color-crossed);
   text-decoration: line-through;
+}
+
+.highLight {
+  color: rgb(230, 180, 255);
 }
 
 .showMore {
