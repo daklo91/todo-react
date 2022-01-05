@@ -139,6 +139,12 @@ li:focus .svgButton {
 }
 
 @media screen and (min-width: 700px) {
+  .showMore {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 16px;
+  }
+
   .checkmark {
     height: 22px;
     width: 22px;
