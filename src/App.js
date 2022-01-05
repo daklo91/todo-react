@@ -18,9 +18,11 @@ function App() {
   );
   const [filterState, setFilterState] = useState("all");
   const [trashCan, setTrashCan] = useState([]);
-  const [snackbarTimer, setSnackbarTimer] = useState(false);
   const [deleteAllAnimation, setdeleteAllAnimation] = useState(false);
-  const timer = useRef(null);
+  const [undoTimer, setUndoTimer] = useState(false);
+  const [clipboardTimer, setClipboardTimer] = useState(false);
+  const timerForSnackbar = useRef(null);
+  const timerForClipboard = useRef(null);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todoListData));
@@ -77,10 +79,10 @@ function App() {
   };
 
   function handleDeleteTodoItem(id) {
-    clearTimeout(timer.current);
-    setSnackbarTimer(true);
-    timer.current = setTimeout(() => {
-      setSnackbarTimer(false);
+    clearTimeout(timerForSnackbar.current);
+    setUndoTimer(true);
+    timerForSnackbar.current = setTimeout(() => {
+      setUndoTimer(false);
       setTrashCan([]);
     }, 5000);
 
@@ -126,6 +128,14 @@ function App() {
     });
   };
 
+  const copyTextHandler = () => {
+    clearTimeout(timerForClipboard.current);
+    setClipboardTimer(true);
+    timerForClipboard.current = setTimeout(() => {
+      setClipboardTimer(false);
+    }, 3000);
+  };
+
   return (
     <div className={classes.app}>
       <div className={classes.background}></div>
@@ -142,6 +152,7 @@ function App() {
           handleDeleteAllTodoItems={handleDeleteAllTodoItems}
           filterStateBigMedia={filterState}
           deleteAllAnimation={deleteAllAnimation}
+          copyText={copyTextHandler}
         />
         <div className={classes.hideFilter}>
           <TodoFilter
@@ -150,12 +161,25 @@ function App() {
           />
         </div>
       </div>
-      <div className={classes.instructionText}>
-        Drag and drop to reorder list
+      <div className={classes.instructionTextContainer}>
+        <span>Drag and drop to reorder list</span>
+        <br />
+        <span className={classes.instructionText}></span>
       </div>
-      {snackbarTimer && trashCan.length ? (
-        <Snackbar undoDeletedItem={undoDeletedItem} trashCan={trashCan} />
-      ) : null}
+      <Snackbar
+        timer={clipboardTimer}
+        botPosition={trashCan.length > 0 ? "10%" : "5%"}
+      >
+        Text copied to clipboard
+      </Snackbar>
+      <Snackbar
+        function={undoDeletedItem}
+        hideWhen={trashCan.length < 1}
+        timer={undoTimer}
+        botPosition={"5%"}
+      >
+        {trashCan.length} item{trashCan.length > 1 ? "s" : null} deleted
+      </Snackbar>
     </div>
   );
 }

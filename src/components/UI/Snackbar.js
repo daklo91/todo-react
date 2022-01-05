@@ -3,12 +3,18 @@ import classes from "./Snackbar.module.css";
 
 const Snackbar = (props) => {
   const content = (
-    <div className={classes.container}>
-      {props.trashCan.length} item{props.trashCan.length > 1 ? "s" : null}{" "}
-      deleted
-      <button onClick={props.undoDeletedItem} className={classes.button}>
-        Undo
-      </button>
+    <div
+      className={`${classes.container} ${
+        props.hideWhen === true ? classes.hide : null
+      } ${props.timer === false ? classes.hide : null}`}
+      style={{ bottom: props.botPosition }}
+    >
+      {props.children}
+      {props.function ? (
+        <button onClick={props.function} className={classes.button}>
+          Undo
+        </button>
+      ) : null}
     </div>
   );
 

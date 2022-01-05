@@ -21,13 +21,25 @@
   overflow: hidden;
 }
 
-.instructionText {
+.instructionTextContainer {
   color: var(--small-text-color);
   text-align: center;
   margin-top: 40px;
   font-size: 14px;
   letter-spacing: -0.19px;
   margin-bottom: 20px;
+  line-height: 18px;
+}
+
+.instructionText:before {
+  content: "Double-click to copy text to clipboard";
+}
+
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
+  .instructionText:before {
+    content: "Double-tap to copy text to clipboard";
+  }
 }
 
 .hideFilter {

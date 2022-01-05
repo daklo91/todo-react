@@ -51,6 +51,7 @@ function TodoList(props) {
                   handleDndGetDropOverItemId={props.handleDndGetDropOverItemId}
                   filterState={props.filterState}
                   deleteAllAnimation={props.deleteAllAnimation}
+                  copyText={props.copyText}
                 />
               ))}
               {provided.placeholder}

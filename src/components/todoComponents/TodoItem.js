@@ -27,7 +27,22 @@ function TodoItem(props) {
       clicks = 0;
     }, 1000);
     if (clicks === 2) {
-      window.getSelection().selectAllChildren(document.getElementById(id));
+      // // window.getSelection().selectAllChildren(document.getElementById(id));
+
+      // /* Get the text field */
+      // var copyText = document.getElementById(id);
+
+      // /* Select the text field */
+      // copyText.select();
+      // copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+      // /* Copy the text inside the text field */
+      // navigator.clipboard.writeText(copyText.value);
+
+      // /* Alert the copied text */
+      // alert("Copied the text: " + copyText.value);
+      navigator.clipboard.writeText(props.text);
+      props.copyText();
     }
   };
 
