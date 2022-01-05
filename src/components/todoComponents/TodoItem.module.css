@@ -11,7 +11,7 @@ li {
 
 .fade {
   opacity: 1;
-  max-height: 10rem;
+  max-height: 1000rem;
   padding: 16px 20px;
   transform: none;
   transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
@@ -68,10 +68,22 @@ li {
   font-family: "Josefin Sans", sans-serif;
   margin-left: 12px;
   cursor: text;
-  max-height: 10rem;
+  max-height: 3em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow-wrap: break-word;
   max-width: 230px;
-  overflow: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.showText {
+  /* -webkit-line-clamp: none; */
+  display: block;
+  max-height: 1000rem;
+  /* overflow: auto;
+  text-overflow: ellipsis; */
 }
 
 .highLight {
@@ -81,6 +93,19 @@ li {
 .textComplete {
   color: var(--text-color-crossed);
   text-decoration: line-through;
+}
+
+.showMore {
+  display: block;
+  float: right;
+  padding-top: 3px;
+  margin-bottom: -10px;
+  font-size: 13px;
+  color: var(--small-text-color);
+}
+
+.showMore:hover {
+  color: var(--control-button-hover);
 }
 
 .svgButton {

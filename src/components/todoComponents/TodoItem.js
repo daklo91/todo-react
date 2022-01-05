@@ -8,9 +8,13 @@ import { Fragment } from "react";
 function TodoItem(props) {
   const [fadeState, setFadeState] = useState(false);
   const [textHighlight, setTextHighlight] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [hasClicked, setHasClicked] = useState(false);
   const leaveTimer = useRef(null);
   const doubleTapTimer = useRef(null);
   const textHighlightTimer = useRef(null);
+  // const liRef = useRef(null);
+  const textRef = useRef(null);
 
   function completeToggle() {
     props.completeToggle(props.id);
@@ -63,6 +67,7 @@ function TodoItem(props) {
     return () => {
       clearTimeout(leaveTimer.current);
       clearTimeout(doubleTapTimer.current);
+      clearTimeout(textHighlightTimer.current);
     };
   }, []);
 
@@ -71,6 +76,16 @@ function TodoItem(props) {
       setFadeState(false);
     }
   }, [props.complete, props.deleteAllAnimation]);
+
+  const showMoreHandler = () => {
+    setShowText(!showText);
+    setHasClicked(true);
+  };
+
+  const isEllipsis = textRef.current
+    ? textRef.current.scrollHeight > textRef.current.clientHeight ||
+      textRef.current.scrollWidth > textRef.current.clientWidth
+    : null;
 
   return (
     <Fragment>
@@ -83,6 +98,7 @@ function TodoItem(props) {
             ref={provided.innerRef}
           >
             <li
+              // ref={liRef}
               className={`${snapshot.isDragging ? classes.isDragging : null} ${
                 fadeState === true ? classes.fade : null
               }`}
@@ -127,14 +143,27 @@ function TodoItem(props) {
                     )}
                   </div>
                 </button>
-                <div
-                  id={props.id}
-                  onClick={(e) => targetText(e, props.id)}
-                  className={`${classes.text} ${
-                    props.complete === true ? classes.textComplete : null
-                  } ${textHighlight ? classes.highLight : null}`}
-                >
-                  {props.text}
+                <div>
+                  <div
+                    ref={textRef}
+                    id={props.id}
+                    onClick={(e) => targetText(e, props.id)}
+                    className={`${classes.text} ${
+                      props.complete === true ? classes.textComplete : null
+                    } ${textHighlight ? classes.highLight : null} ${
+                      showText ? classes.showText : null
+                    }`}
+                  >
+                    {props.text}
+                  </div>
+                  {isEllipsis || hasClicked ? (
+                    <button
+                      className={classes.showMore}
+                      onClick={showMoreHandler}
+                    >
+                      {!showText ? <span>show</span> : <span>hide</span>}
+                    </button>
+                  ) : null}
                 </div>
               </div>
               <button
