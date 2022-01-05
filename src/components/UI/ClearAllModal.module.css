@@ -48,9 +48,9 @@
     rgba(85, 221, 255, 1) 0%,
     rgba(192, 88, 243, 1) 100%
   );
-  text-shadow: -0.5px -0.5px 0 var(--border-color),
-    0.5px -0.5px 0 var(--border-color), -0.5px 0.5px 0 var(--border-color),
-    0.5px 0.5px 0 var(--border-color);
+  color: white;
+  /* text-shadow: -0.5px -0.5px 0 black, 0.5px -0.5px 0 black, -0.5px 0.5px 0 black,
+    0.5px 0.5px 0 black; */
 }
 
 .button:nth-child(2) {
