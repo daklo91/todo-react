@@ -1,21 +1,21 @@
 li {
   display: flex;
-  padding: 0px 20px;
   justify-content: space-between;
-  border-bottom: var(--border-color) solid 0px;
   opacity: 0;
   max-height: 0;
-  transform: rotateY(-90deg);
-  transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
+  padding: 0;
+  border-bottom: var(--border-color) solid 0px;
+  transform: rotateX(-90deg);
+  transition: all 0.5s;
+  /* cubic-bezier(0.36, -0.64, 0.34, 1.76); */
 }
 
 .fade {
   opacity: 1;
-  max-height: 1000rem;
+  max-height: 5rem;
   padding: 16px 20px;
-  transform: none;
-  transition: all 0.5s cubic-bezier(0.36, -0.64, 0.34, 1.76);
   border-bottom: var(--border-color) solid 1px;
+  transform: none;
 }
 
 .isDragging {
@@ -68,7 +68,6 @@ li {
   font-family: "Josefin Sans", sans-serif;
   margin-left: 12px;
   cursor: text;
-  max-height: 3em;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -79,11 +78,8 @@ li {
 }
 
 .showText {
-  /* -webkit-line-clamp: none; */
   display: block;
   max-height: 1000rem;
-  /* overflow: auto;
-  text-overflow: ellipsis; */
 }
 
 .highLight {

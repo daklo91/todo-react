@@ -55,10 +55,13 @@ function TodoItem(props) {
   useEffect(() => {
     setFadeState(true);
     if (props.filterState === "all") {
+      setShowText(false);
       setFadeState(true);
     } else if (props.filterState === true && props.complete === false) {
+      setShowText(false);
       setFadeState(false);
     } else if (props.filterState === false && props.complete === true) {
+      setShowText(false);
       setFadeState(false);
     }
   }, [props.filterState, props.complete]);
@@ -103,6 +106,7 @@ function TodoItem(props) {
                 fadeState === true ? classes.fade : null
               }`}
               onClick={clearSelection}
+              style={showText ? { maxHeight: "1000rem" } : null}
             >
               <div
                 className={classes.groupCheckmarkText}
@@ -153,6 +157,7 @@ function TodoItem(props) {
                     } ${textHighlight ? classes.highLight : null} ${
                       showText ? classes.showText : null
                     }`}
+                    // style={showText ? { maxHeight: "1000rem" } : null}
                   >
                     {props.text}
                   </div>
