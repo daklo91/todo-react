@@ -74,6 +74,10 @@ li {
   overflow: auto;
 }
 
+.highLight {
+  color: rgb(230, 180, 255);
+}
+
 .textComplete {
   color: var(--text-color-crossed);
   text-decoration: line-through;

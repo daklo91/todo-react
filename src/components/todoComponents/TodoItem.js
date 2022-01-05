@@ -7,7 +7,11 @@ import { Fragment } from "react";
 
 function TodoItem(props) {
   const [fadeState, setFadeState] = useState(false);
+  const [textHighlight, setTextHighlight] = useState(false);
   const leaveTimer = useRef(null);
+  const doubleTapTimer = useRef(null);
+  const textHighlightTimer = useRef(null);
+
   function completeToggle() {
     props.completeToggle(props.id);
   }
@@ -23,24 +27,14 @@ function TodoItem(props) {
   const targetText = (e, id) => {
     e.stopPropagation();
     clicks++;
-    setTimeout(() => {
+    doubleTapTimer.current = setTimeout(() => {
       clicks = 0;
     }, 1000);
     if (clicks === 2) {
-      // // window.getSelection().selectAllChildren(document.getElementById(id));
-
-      // /* Get the text field */
-      // var copyText = document.getElementById(id);
-
-      // /* Select the text field */
-      // copyText.select();
-      // copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-      // /* Copy the text inside the text field */
-      // navigator.clipboard.writeText(copyText.value);
-
-      // /* Alert the copied text */
-      // alert("Copied the text: " + copyText.value);
+      setTextHighlight(true);
+      textHighlightTimer.current = setTimeout(() => {
+        setTextHighlight(false);
+      }, 500);
       navigator.clipboard.writeText(props.text);
       props.copyText();
     }
@@ -68,6 +62,7 @@ function TodoItem(props) {
   useEffect(() => {
     return () => {
       clearTimeout(leaveTimer.current);
+      clearTimeout(doubleTapTimer.current);
     };
   }, []);
 
@@ -137,7 +132,7 @@ function TodoItem(props) {
                   onClick={(e) => targetText(e, props.id)}
                   className={`${classes.text} ${
                     props.complete === true ? classes.textComplete : null
-                  }`}
+                  } ${textHighlight ? classes.highLight : null}`}
                 >
                   {props.text}
                 </div>
