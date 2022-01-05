@@ -3,7 +3,7 @@ li {
   justify-content: space-between;
   opacity: 0;
   max-height: 0;
-  padding: 0;
+  padding: 0px 20px;
   border-bottom: var(--border-color) solid 0px;
   transform: rotateX(-90deg);
   transition: all 0.5s;
