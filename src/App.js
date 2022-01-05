@@ -94,6 +94,7 @@ function App() {
     Object.assign(deletedObject, { oldIndex: oldIndex.oldIndex });
     setTrashCan((prevState) => [...prevState, deletedObject]);
     const newListData = todoListData.filter((object) => object.id !== id);
+    localStorage.setItem("todos", JSON.stringify(newListData));
     setTodoListData((prevState) =>
       prevState.splice(0, todoListData.length, ...newListData)
     );
