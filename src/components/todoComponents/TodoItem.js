@@ -118,7 +118,7 @@ function TodoItem(props) {
                       : "Complete this todo"
                   }
                 >
-                  <div
+                  <span
                     className={`
                 ${classes.checkmarkBorder} ${
                       props.complete === true ? classes.checkMarkActive : null
@@ -141,9 +141,9 @@ function TodoItem(props) {
                         />
                       </svg>
                     ) : (
-                      <div className={classes.checkmark}></div>
+                      <span className={classes.checkmark}></span>
                     )}
-                  </div>
+                  </span>
                 </button>
                 <div>
                   <div

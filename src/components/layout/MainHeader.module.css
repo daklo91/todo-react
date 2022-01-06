@@ -7,6 +7,13 @@ header {
   margin-top: 48px;
 }
 
+h1 {
+  color: white;
+  font-size: 25px;
+  letter-spacing: 11px;
+  margin: 0px;
+}
+
 .darkModeButton:hover .sunSVG {
   filter: brightness(90%);
 }
@@ -22,10 +29,15 @@ header {
 }
 
 @media only screen and (min-width: 700px) {
-  .logo {
-    height: 30px;
-    width: 167px;
+  header {
+    margin-top: 70px;
   }
+
+  h1 {
+    font-size: 40px;
+    letter-spacing: 15px;
+  }
+
   .sunSVG {
     height: 26px;
     width: 26px;

@@ -32,13 +32,13 @@
 }
 
 .instructionText:before {
-  content: "Double-click to copy text to clipboard";
+  content: "Double-click ";
 }
 
 /* smartphones, touchscreens */
 @media (hover: none) and (pointer: coarse) {
   .instructionText:before {
-    content: "Double-tap to copy text to clipboard";
+    content: "Double-tap ";
   }
 }
 

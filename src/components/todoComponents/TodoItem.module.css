@@ -7,7 +7,6 @@ li {
   border-bottom: var(--border-color) solid 0px;
   transform: rotateX(-90deg);
   transition: all 0.5s;
-  /* cubic-bezier(0.36, -0.64, 0.34, 1.76); */
 }
 
 .fade {
@@ -64,6 +63,7 @@ li {
 }
 
 .text {
+  margin-top: 3px;
   color: var(--text-color);
   font-family: "Josefin Sans", sans-serif;
   margin-left: 12px;

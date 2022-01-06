@@ -36,9 +36,9 @@ function CreateTodo(props) {
         className={TodoItemClasses.checkmarkButton}
       >
         <Confetti active={confetti} config={confettiConfig} />
-        <div className={TodoItemClasses.checkmarkBorder}>
-          <div className={TodoItemClasses.checkmark}></div>
-        </div>
+        <span className={TodoItemClasses.checkmarkBorder}>
+          <span className={TodoItemClasses.checkmark}></span>
+        </span>
       </button>
       <form onSubmit={submitHandler} className={classes.createTodoform}>
         <input

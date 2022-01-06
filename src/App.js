@@ -141,31 +141,35 @@ function App() {
       <div className={classes.background}></div>
       <div className={classes.container}>
         <MainHeader changeTheme={changeThemeHandler} theme={prefferedTheme} />
-        <CreateTodo getInputText={getInputTextHandler} />
-        <TodoList
-          handleOnDragEnd={handleOnDragEnd}
-          todoListData={todoListData}
-          filterState={filterState}
-          handleCompleteToggle={handleCompleteToggle}
-          handleDeleteTodoItem={handleDeleteTodoItem}
-          handleSetFilterState={changeFilterState}
-          handleDeleteAllTodoItems={handleDeleteAllTodoItems}
-          filterStateBigMedia={filterState}
-          deleteAllAnimation={deleteAllAnimation}
-          copyText={copyTextHandler}
-        />
-        <div className={classes.hideFilter}>
-          <TodoFilter
-            handleSetFilterState={changeFilterState}
+        <main>
+          <CreateTodo getInputText={getInputTextHandler} />
+          <TodoList
+            handleOnDragEnd={handleOnDragEnd}
+            todoListData={todoListData}
             filterState={filterState}
+            handleCompleteToggle={handleCompleteToggle}
+            handleDeleteTodoItem={handleDeleteTodoItem}
+            handleSetFilterState={changeFilterState}
+            handleDeleteAllTodoItems={handleDeleteAllTodoItems}
+            filterStateBigMedia={filterState}
+            deleteAllAnimation={deleteAllAnimation}
+            copyText={copyTextHandler}
           />
-        </div>
+          <div className={classes.hideFilter}>
+            <TodoFilter
+              handleSetFilterState={changeFilterState}
+              filterState={filterState}
+            />
+          </div>
+        </main>
       </div>
-      <div className={classes.instructionTextContainer}>
+      <footer className={classes.instructionTextContainer}>
         <span>Drag and drop to reorder list</span>
         <br />
-        <span className={classes.instructionText}></span>
-      </div>
+        <span className={classes.instructionText}>
+          to copy text to clipboard
+        </span>
+      </footer>
       <Snackbar
         timer={clipboardTimer}
         botPosition={trashCan.length > 0 ? "10%" : "5%"}
