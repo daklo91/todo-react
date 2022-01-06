@@ -30,12 +30,12 @@ function CreateTodo(props) {
 
   return (
     <div className={classes.container}>
+      <Confetti active={confetti} config={confettiConfig} />
       <button
         title="Create a completed todo"
         onClick={(e) => submitHandler(e, "clicked")}
         className={TodoItemClasses.checkmarkButton}
       >
-        <Confetti active={confetti} config={confettiConfig} />
         <span className={TodoItemClasses.checkmarkBorder}>
           <span className={TodoItemClasses.checkmark}></span>
         </span>
