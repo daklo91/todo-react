@@ -19,7 +19,12 @@ function ClearTodo(props) {
 
   return (
     <div className={classes.container}>
-      <span className={classes.itemCounter}>
+      <span
+        className={classes.itemCounter}
+        title={`${uncompleteItemArray} uncompleted item${
+          uncompleteItemArray !== 1 ? "s" : ""
+        } left to do`}
+      >
         {uncompleteItemArray} item
         {uncompleteItemArray !== 1 ? "s" : null} left
       </span>

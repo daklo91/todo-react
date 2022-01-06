@@ -101,24 +101,22 @@ function TodoItem(props) {
             ref={provided.innerRef}
           >
             <li
-              // ref={liRef}
+              title="Left click and hold to drag"
               className={`${snapshot.isDragging ? classes.isDragging : null} ${
                 fadeState === true ? classes.fade : null
               }`}
               onClick={clearSelection}
               style={showText ? { maxHeight: "1000rem" } : null}
             >
-              <div
-                className={classes.groupCheckmarkText}
-                title={
-                  props.complete === true
-                    ? "Uncomplete this todo"
-                    : "Complete this todo"
-                }
-              >
+              <div className={classes.groupCheckmarkText}>
                 <button
                   className={classes.checkmarkButton}
                   onClick={completeToggle}
+                  title={
+                    props.complete === true
+                      ? "Uncomplete this todo"
+                      : "Complete this todo"
+                  }
                 >
                   <div
                     className={`
@@ -149,6 +147,7 @@ function TodoItem(props) {
                 </button>
                 <div>
                   <div
+                    title="Double-click to copy text to clipboard"
                     ref={textRef}
                     id={props.id}
                     onClick={(e) => targetText(e, props.id)}
@@ -157,12 +156,16 @@ function TodoItem(props) {
                     } ${textHighlight ? classes.highLight : null} ${
                       showText ? classes.showText : null
                     }`}
-                    // style={showText ? { maxHeight: "1000rem" } : null}
                   >
                     {props.text}
                   </div>
                   {isEllipsis || hasClicked ? (
                     <button
+                      title={
+                        !showText
+                          ? "Show the rest of the text"
+                          : "Hide the text"
+                      }
                       className={classes.showMore}
                       onClick={showMoreHandler}
                     >
