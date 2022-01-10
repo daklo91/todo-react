@@ -118,7 +118,7 @@ li:hover .svgButton {
   visibility: visible;
 }
 
-li:focus .svgButton {
+ul:focus-within .svgButton {
   visibility: visible;
 }
 
