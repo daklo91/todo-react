@@ -57,7 +57,6 @@ function App() {
 
   const handleOnDragEnd = (result) => {
     const { destination, source, draggableId } = result;
-
     if (!destination) {
       return;
     }
@@ -69,12 +68,12 @@ function App() {
       return;
     }
 
-    const tempArray = todoListData;
+    const tempArray = Array.from(todoListData);
     const draggedItem = tempArray.find((item) => item.id === draggableId);
 
     tempArray.splice(source.index, 1);
     tempArray.splice(destination.index, 0, draggedItem);
-    localStorage.setItem("todos", JSON.stringify(todoListData));
+    localStorage.setItem("todos", JSON.stringify(tempArray));
     setTodoListData(tempArray);
   };
 
@@ -168,6 +167,13 @@ function App() {
         <br />
         <span className={classes.instructionText}>
           to copy text to clipboard
+        </span>
+        <br />
+        <br />
+        <span>
+          <span style={{ textDecoration: "underline" }}>Keyboard hotkeys:</span>{" "}
+          Focus with tab. <br />
+          Grab/place with space. Move with arrow keys.
         </span>
       </footer>
       <Snackbar
