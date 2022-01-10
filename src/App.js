@@ -165,12 +165,15 @@ function App() {
       <footer className={classes.instructionTextContainer}>
         <span>Drag and drop to reorder list</span>
         <br />
-        <span className={classes.instructionText}>
-          to copy text to clipboard
+        <span className={classes.hideOnTouchScreen}>
+          Double-click to copy text to clipboard
+        </span>
+        <span className={classes.showOnTouchScreen}>
+          Double-tap to copy text to clipboard
         </span>
         <br />
         <br />
-        <span>
+        <span className={classes.hideOnTouchScreen}>
           <span style={{ textDecoration: "underline" }}>Keyboard hotkeys:</span>{" "}
           Focus with tab. <br />
           Grab/place with space. Move with arrow keys.

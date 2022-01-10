@@ -31,14 +31,17 @@
   line-height: 18px;
 }
 
-.instructionText:before {
-  content: "Double-click ";
+.showOnTouchScreen {
+  display: none;
 }
 
 /* smartphones, touchscreens */
 @media (hover: none) and (pointer: coarse) {
-  .instructionText:before {
-    content: "Double-tap ";
+  .hideOnTouchScreen {
+    display: none;
+  }
+  .showOnTouchScreen {
+    display: inline;
   }
 }
 
