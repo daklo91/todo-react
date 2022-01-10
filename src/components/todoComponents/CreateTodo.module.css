@@ -8,6 +8,10 @@
   box-shadow: 0px 35px 50px -15px var(--shadow-color);
 }
 
+.container:focus-within {
+  outline: 2px solid var(--border-color);
+}
+
 .createTodoform {
   width: 100%;
 }
@@ -25,6 +29,10 @@
 
 .input::placeholder {
   color: var(--placeholder-text);
+}
+
+.input:focus::placeholder {
+  opacity: 0.3;
 }
 
 @media only screen and (min-width: 700px) {
