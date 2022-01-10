@@ -93,7 +93,11 @@ function TodoItem(props) {
   return (
     <Fragment>
       <Confetti active={props.complete} config={confettiConfig} />
-      <Draggable draggableId={props.id} index={props.index}>
+      <Draggable
+        draggableId={props.id}
+        index={props.index}
+        isDragDisabled={!fadeState}
+      >
         {(provided, snapshot) => (
           <div
             {...provided.draggableProps}
@@ -110,7 +114,11 @@ function TodoItem(props) {
             >
               <div className={classes.groupCheckmarkText}>
                 <button
+                  tabIndex={fadeState ? 0 : -1}
                   className={classes.checkmarkButton}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                  }}
                   onClick={completeToggle}
                   title={
                     props.complete === true
@@ -161,6 +169,10 @@ function TodoItem(props) {
                   </div>
                   {isEllipsis || hasClicked ? (
                     <button
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                      }}
+                      tabIndex={fadeState ? 0 : -1}
                       title={
                         !showText
                           ? "Show the rest of the text"
@@ -175,6 +187,10 @@ function TodoItem(props) {
                 </div>
               </div>
               <button
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                }}
+                tabIndex={fadeState ? 0 : -1}
                 className={classes.svgButton}
                 onClick={deleteTodoItem}
                 title="Delete this todo"
