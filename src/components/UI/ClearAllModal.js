@@ -12,12 +12,18 @@ const Modal = (props) => {
       Are you sure?
       <div className={classes["button-container"]}>
         <button
+          tabIndex={1}
           onClick={() => props.closeModal("yes")}
           className={classes.button}
+          autoFocus
         >
           Yes
         </button>
-        <button onClick={props.closeModal} className={classes.button}>
+        <button
+          onClick={props.closeModal}
+          className={classes.button}
+          tabIndex={1}
+        >
           Cancel
         </button>
       </div>
