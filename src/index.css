@@ -46,3 +46,7 @@ button {
   all: unset;
   cursor: pointer;
 }
+
+button:focus-visible {
+  outline: 5px auto -webkit-focus-ring-color;
+}
