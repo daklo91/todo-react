@@ -22,6 +22,7 @@ function App() {
   const [deleteAllAnimation, setdeleteAllAnimation] = useState(false);
   const [undoTimer, setUndoTimer] = useState(false);
   const [clipboardTimer, setClipboardTimer] = useState(false);
+  const [preventUndo, setPreventUndo] = useState(false);
   const timerForSnackbar = useRef(null);
   const timerForClipboard = useRef(null);
 
@@ -56,7 +57,12 @@ function App() {
     );
   }
 
+  const handleOnBeforeDragStart = () => {
+    setPreventUndo(true);
+  };
+
   const handleOnDragEnd = (result) => {
+    setPreventUndo(false);
     const { destination, source, draggableId } = result;
     if (!destination) {
       return;
@@ -140,7 +146,7 @@ function App() {
   useEffect(() => {
     const handleUserKeyPress = (event) => {
       if (event.keyCode === 90 && event.ctrlKey) {
-        if (trashCan.length > 0) {
+        if (trashCan.length > 0 && !preventUndo) {
           undoDeletedItem();
         }
       }
@@ -149,7 +155,7 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleUserKeyPress);
     };
-  }, [undoDeletedItem, trashCan]);
+  }, [undoDeletedItem, trashCan, preventUndo]);
 
   return (
     <div className={classes.app}>
@@ -166,6 +172,7 @@ function App() {
             handleDeleteTodoItem={handleDeleteTodoItem}
             handleSetFilterState={changeFilterState}
             handleDeleteAllTodoItems={handleDeleteAllTodoItems}
+            handleOnBeforeDragStart={handleOnBeforeDragStart}
             filterStateBigMedia={filterState}
             deleteAllAnimation={deleteAllAnimation}
             copyText={copyTextHandler}

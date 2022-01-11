@@ -28,9 +28,16 @@ function TodoList(props) {
     props.handleOnDragEnd(result);
   };
 
+  const onBeforeDragStart = (result) => {
+    props.handleOnBeforeDragStart(result);
+  };
+
   return (
     <div className={classes.container}>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext
+        onDragEnd={onDragEnd}
+        onBeforeDragStart={onBeforeDragStart}
+      >
         <Droppable droppableId="oneAndOnly">
           {(provided) => (
             <ul
