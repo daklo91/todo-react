@@ -6,6 +6,7 @@ import classes from "./App.module.css";
 import CreateTodo from "./components/todoComponents/CreateTodo";
 import TodoFilter from "./components/todoComponents/TodoFilter";
 import Snackbar from "./components/UI/Snackbar";
+import { useCallback } from "react";
 
 function App() {
   const [prefferedTheme, setPrefferedTheme] = useState(
@@ -109,11 +110,12 @@ function App() {
     }, 400);
   }
 
-  const undoDeletedItem = () => {
+  const undoDeletedItem = useCallback(() => {
     const popped = trashCan.pop();
-    const newArray = todoListData.splice(popped.oldIndex, 0, popped);
-    setTodoListData(todoListData.splice(0, todoListData.length, newArray));
-  };
+    const tempArray = Array.from(todoListData);
+    tempArray.splice(popped.oldIndex, 0, popped);
+    setTodoListData(tempArray);
+  }, [trashCan, todoListData]);
 
   const getInputTextHandler = (e, clicked) => {
     const id = Math.random().toString(16).slice(2);
@@ -134,6 +136,20 @@ function App() {
       setClipboardTimer(false);
     }, 3000);
   };
+
+  useEffect(() => {
+    const handleUserKeyPress = (event) => {
+      if (event.keyCode === 90 && event.ctrlKey) {
+        if (trashCan.length > 0) {
+          undoDeletedItem();
+        }
+      }
+    };
+    window.addEventListener("keydown", handleUserKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyPress);
+    };
+  }, [undoDeletedItem, trashCan]);
 
   return (
     <div className={classes.app}>
@@ -176,7 +192,8 @@ function App() {
         <span className={classes.hideOnTouchScreen}>
           <span style={{ textDecoration: "underline" }}>Keyboard hotkeys:</span>{" "}
           Focus with tab. <br />
-          Grab/place with space. Move with arrow keys.
+          Grab/place with space. Move with arrow keys. <br />
+          Ctrl + Z to Undo.
         </span>
       </footer>
       <Snackbar
