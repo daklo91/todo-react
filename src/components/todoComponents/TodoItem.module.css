@@ -80,7 +80,7 @@ li {
 
 .showText {
   display: block;
-  max-height: 1000rem;
+  max-height: none;
 }
 
 .textComplete {
